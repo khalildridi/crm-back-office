@@ -22,10 +22,11 @@ const DefaultApp = () => (
 
 export default function IdurarOs() {
   const { isLoggedIn } = useSelector(selectAuth);
+  console.log("is logged in",isLoggedIn)
 
-  console.log(
-    '🚀 Welcome to IDURAR ERP CRM! Did you know that we also offer commercial customization services? Contact us at hello@idurarapp.com for more information.'
-  );
+  // console.log(
+  //   '🚀 Welcome to IDURAR ERP CRM! Did you know that we also offer commercial customization services? Contact us at hello@idurarapp.com for more information.'
+  // );
 
   // // Online state
   // const [isOnline, setIsOnline] = useState(navigator.onLine);
