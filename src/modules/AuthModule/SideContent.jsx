@@ -1,5 +1,5 @@
 import { Space, Layout, Divider, Typography } from 'antd';
-import logo from '@/style/images/idurar-crm-erp.svg';
+import logo from '@/style/images/shrewd.svg';
 import useLanguage from '@/locale/useLanguage';
 import { useSelector } from 'react-redux';
 import { selectLangDirection } from '@/redux/translate/selectors';
@@ -15,8 +15,8 @@ export default function SideContent() {
     <Content
       style={{
         padding: '150px 30px 30px',
-        width: '100%',
-        maxWidth: '400px',
+        width: '80%',
+        maxWidth: '300',
         margin: '0 auto',
       }}
       className="sideContent"
@@ -24,38 +24,38 @@ export default function SideContent() {
       <div style={{ width: '100%' }}>
         <img
           src={logo}
-          alt="IDURAR ERP CRM"
+          alt="Shrewd Steward CRM"
           style={{ margin: '0 auto 40px', display: 'block' }}
-          height={63}
-          width={220}
+          height={"150px"}
+          width={"220px"}
         />
-        <div className="space40"></div>
-        <Title level={3}>{translate('Manage your company with')} :</Title>
+        <div className="space50"></div>
+        <Title level={1} >{translate('The Shrewd Steward')} </Title>
 
-        <div className="space20"></div>
-        <ul className="list-checked" style={{paddingRight:0}}>
-          <li className={`list-checked-item ${langDirection === "rtl" ? "list-checked-item-right" : "list-checked-item-left"}`}>
+        <div className="space30"></div>
+        <ul className="list-checked" style={{paddingRight:15}}>
+          {/* <li className={`list-checked-item ${langDirection === "rtl" ? "list-checked-item-right" : "list-checked-item-left"}`}> */}
             <Space direction="vertical">
-              <Text strong>{translate('All-in-one tool')}</Text>
+              {/* <Text strong>{translate('All-in-one tool')}</Text> */}
 
-              <Text>{translate('Run and scale your ERP CRM Apps')}</Text>
+              <Title  level={2} >{translate('Admin Area')}</Title>
             </Space>
-          </li>
+          {/* </li> */}
 
-          <li className={`list-checked-item ${langDirection === "rtl" ? "list-checked-item-right" : "list-checked-item-left"}`}>
+          {/* <li className={`list-checked-item ${langDirection === "rtl" ? "list-checked-item-right" : "list-checked-item-left"}`}>
             <Space direction="vertical">
               <Text strong>{translate('Easily add and manage your services')}</Text>
               <Text>{translate('It brings together your invoice clients and leads')}</Text>
             </Space>
-          </li>
+          </li> */}
         </ul>
-        <Divider />
+        {/* <Divider />
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
           }}
-        >
+        > */}
           {/* <img
             src={logo1}
             alt="Logo1"
@@ -116,7 +116,7 @@ export default function SideContent() {
             height={48}
             width={48}
           /> */}
-        </div>
+        {/* </div> */}
       </div>
     </Content>
   );

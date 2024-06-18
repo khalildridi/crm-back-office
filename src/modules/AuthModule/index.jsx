@@ -5,7 +5,7 @@ import { Layout, Col, Divider, Typography } from 'antd';
 import AuthLayout from '@/layout/AuthLayout';
 import SideContent from './SideContent';
 
-import logo from '@/style/images/idurar-crm-erp.svg';
+import logo from '@/style/images/shrewd.svg';
 
 const { Content } = Layout;
 const { Title } = Typography;
@@ -16,7 +16,7 @@ const AuthModule = ({ authContent, AUTH_TITLE, isForRegistre = false }) => {
     <AuthLayout sideContent={<SideContent />}>
       <Content
         style={{
-          padding: isForRegistre ? '40px 30px 30px' : '100px 30px 30px',
+          padding: isForRegistre ? '100px 30px 30px' : '100px 30px 30px',
           maxWidth: '440px',
           margin: '0 auto',
         }}

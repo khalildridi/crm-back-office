@@ -6,6 +6,7 @@ import { useAppContext } from '@/context/appContext';
 
 import useLanguage from '@/locale/useLanguage';
 import logoIcon from '@/style/images/logo-icon.svg';
+import logoIconJpg from "@/style/images/shrewdsteward.jpeg"
 import logoText from '@/style/images/logo-text.svg';
 
 import useResponsive from '@/hooks/useResponsive';
@@ -76,11 +77,11 @@ function Sidebar({ collapsible, isMobile = false }) {
     //   icon: <FilterOutlined />,
     //   label: <Link to={'/lead'}>{translate('leads')}</Link>,
     // },
-    {
-      key: 'offer',
-      icon: <FileOutlined />,
-      label: <Link to={'/offer'}>{translate('offers')}</Link>,
-    },
+    // {
+    //   key: 'offer',
+    //   icon: <FileOutlined />,
+    //   label: <Link to={'/offer'}>{translate('offers')}</Link>,
+    // },
     {
       key: 'invoice',
       icon: <ContainerOutlined />,
@@ -129,17 +130,17 @@ function Sidebar({ collapsible, isMobile = false }) {
         },
            {
           key: 'admin',
-          label: <Link to={'/admin'}>{translate('Staff')}</Link>,
+          label: <Link to={'/admin'}>{translate('Admin')}</Link>,
         },
 
         {
           key: 'paymentMode',
           label: <Link to={'/payment/mode'}>{translate('payments_mode')}</Link>,
         },
-        {
-          key: 'taxes',
-          label: <Link to={'/taxes'}>{translate('taxes')}</Link>,
-        },
+        // {
+        //   key: 'taxes',
+        //   label: <Link to={'/taxes'}>{translate('taxes')}</Link>,
+        // },
         {
           key: 'about',
           label: <Link to={'/about'}>{translate('about')}</Link>,
@@ -203,7 +204,7 @@ function Sidebar({ collapsible, isMobile = false }) {
           cursor: 'pointer',
         }}
       >
-        <img src={logoIcon} alt="Logo" style={{ marginLeft: '-5px', height: '40px' }} />
+        <img src={logoIconJpg} alt="Logo" style={{ marginLeft: '-5px', height: '60px',width:"100px" }} />
 
         {!showLogoApp && (
           <img

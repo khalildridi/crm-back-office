@@ -45,12 +45,12 @@ export default function Settings() {
       icon: <DollarOutlined />,
       children: <MoneyFormatSettings />,
     },
-    {
-      key: 'finance_settings',
-      label: translate('Finance Settings'),
-      icon: <CreditCardOutlined />,
-      children: <FinanceSettings />,
-    },
+    // {
+    //   key: 'finance_settings',
+    //   label: translate('Finance Settings'),
+    //   icon: <CreditCardOutlined />,
+    //   children: <FinanceSettings />,
+    // },
   ];
 
   const pageTitle = translate('Settings');

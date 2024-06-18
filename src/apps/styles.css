@@ -1,0 +1,23 @@
+/* styles.css */
+.sticky-sidebar {
+  position: -webkit-sticky; /* Pour Safari */
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Hauteur de la fenêtre */
+  overflow-y: auto; /* Défilement vertical si nécessaire */
+  background: #fff; /* Couleur de fond */
+  z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+}
+
+
+/* styles.css */
+.fixed-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0; /* ou right: 0; si votre sidebar est à droite */
+  height: 100vh; /* Hauteur de la fenêtre */
+  overflow-y: false; /* Défilement vertical si nécessaire */
+  background: #fff; /* Couleur de fond */
+  z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+  width: 275px; /* Largeur de la sidebar */
+}

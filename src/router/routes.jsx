@@ -1,3 +1,6 @@
+import CompanyCreate from '@/pages/Company/CompanyCreate';
+import CompanyRead from '@/pages/Company/CompanyRead';
+import CompanyUpdate from '@/pages/Company/CompanyUpdate';
 import { lazy } from 'react';
 
 import { Navigate } from 'react-router-dom';
@@ -82,9 +85,21 @@ let routes = {
       path: '/people',
       element: <People />,
     },
-    {
+   {
       path: '/company',
       element: <Company />,
+    },
+    {
+      path: '/company/create',
+      element: <CompanyCreate />,
+    },
+    {
+      path: '/company/read/:id',
+      element: <CompanyRead />,
+    },
+    {
+      path: '/company/update/:id',
+      element: <CompanyUpdate />,
     },
     {
       path: '/product',

@@ -42,6 +42,17 @@ export default function AdminForm({ isUpdateForm = false, isForAdminOwner = fals
       >
         <Input autoComplete="off" />
       </Form.Item>
+       <Form.Item
+        label={translate('surName')}
+        name="surname"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input autoComplete="off" />
+      </Form.Item>
       <Form.Item
         label={translate('email')}
         name="email"

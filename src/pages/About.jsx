@@ -7,24 +7,24 @@ const About = () => {
   return (
     <Result
       status="info"
-      title={'IDURAR'}
-      subTitle={translate('Do you need help on customize of this app')}
+      title={'SHREWD STEWARD CRM'}
+      subTitle={translate('CRM Platfrom ')}
       extra={
         <>
-          <p>
+          {/* <p>
             Website : <a href="https://www.idurarapp.com">www.idurarapp.com</a>{' '}
-          </p>
-          <p>
+          </p> */}
+          {/* <p>
             GitHub :{' '}
             <a href="https://github.com/idurar/idurar-erp-crm">
               https://github.com/idurar/idurar-erp-crm
             </a>
-          </p>
+          </p> */}
           <Button
             type="primary"
-            onClick={() => {
-              window.open(`https://www.idurarapp.com/contact-us/`);
-            }}
+            // onClick={() => {
+            //   window.open(`https://www.idurarapp.com/contact-us/`);
+            // }}
           >
             {translate('Contact us')}
           </Button>
