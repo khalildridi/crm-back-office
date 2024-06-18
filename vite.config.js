@@ -25,7 +25,7 @@ export default ({ mode }) => {
         '/api': {
           target: proxy_url,
           changeOrigin: true,
-          secure: false,
+          secure: true,
         },
       },
     },
