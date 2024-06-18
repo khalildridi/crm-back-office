@@ -9,12 +9,12 @@ export const login = async ({ loginData }) => {
     const response = await axios.post(
       API_BASE_URL + `login?timestamp=${new Date().getTime()}`,
       loginData,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*', // Allow access from any origin
-          'Content-Type': 'application/json'  // Example of setting the content type
-        }
-      }
+      // {
+      //   headers: {
+      //     'Access-Control-Allow-Origin': '*', // Allow access from any origin
+      //     'Content-Type': 'application/json'  // Example of setting the content type
+      //   }
+      // }
     );
 
     const { status, data } = response;
