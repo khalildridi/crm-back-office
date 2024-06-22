@@ -138,6 +138,8 @@ const request = {
 
       const response = await axios.get(entity + '/list' + query);
 
+      console.log("response is",response)
+
       successHandler(response, {
         notifyOnSuccess: false,
         notifyOnFailed: false,

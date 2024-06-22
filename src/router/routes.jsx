@@ -111,23 +111,23 @@ let routes = {
     },
 
     {
-      path: '/invoice',
+      path: '/investment',
       element: <Invoice />,
     },
     {
-      path: '/invoice/create',
+      path: '/investment/create',
       element: <InvoiceCreate />,
     },
     {
-      path: '/invoice/read/:id',
+      path: '/investment/read/:id',
       element: <InvoiceRead />,
     },
     {
-      path: '/invoice/update/:id',
+      path: '/investment/update/:id',
       element: <InvoiceUpdate />,
     },
     {
-      path: '/invoice/pay/:id',
+      path: '/investment/pay/:id',
       element: <InvoiceRecordPayment />,
     },
     {

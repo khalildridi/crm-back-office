@@ -50,7 +50,7 @@ const AppNav = ({ translate }) => [
   {
     key: 'invoice',
     icon: <ContainerOutlined />,
-    label: <Link to={'/invoice'}>{translate('invoice')}</Link>,
+    label: <Link to={'/investment'}>{translate('invoice')}</Link>,
   },
   {
     key: 'quote',

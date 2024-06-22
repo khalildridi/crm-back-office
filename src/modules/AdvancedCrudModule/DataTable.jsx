@@ -99,7 +99,7 @@ export default function DataTable({ config, extra = [] }) {
 
   const handleRecordPayment = (record) => {
     dispatch(adavancedCrud.currentItem({ data: record }));
-    navigate(`/invoice/pay/${record.invoice._id}`);
+    navigate(`/investment/pay/${record.invoice._id}`);
   };
 
   dataTableColumns = [

@@ -108,12 +108,12 @@ export default function DashboardModule() {
       entity: 'quote',
       title: translate('proforma invoices'),
     },
-    {
-      result: offerResult,
-      isLoading: offerLoading,
-      entity: 'offer',
-      title: translate('offers'),
-    },
+    // {
+    //   result: offerResult,
+    //   isLoading: offerLoading,
+    //   entity: 'offer',
+    //   title: translate('offers'),
+    // },
   ];
 
   const statisticCards = entityData.map((data, index) => {
@@ -155,13 +155,13 @@ export default function DashboardModule() {
             isLoading={quoteLoading}
             data={quoteResult?.total}
           />
-          <SummaryCard
+          {/* <SummaryCard
             title={translate('offers')}
             tagColor={'green'}
             prefix={translate('This month')}
             isLoading={offerLoading}
             data={offerResult?.total}
-          />
+          /> */}
           <SummaryCard
             title={translate('Unpaid')}
             tagColor={'red'}
