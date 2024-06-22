@@ -6,7 +6,7 @@ import { useAppContext } from '@/context/appContext';
 
 import useLanguage from '@/locale/useLanguage';
 import logoIcon from '@/style/images/logo-icon.svg';
-import logoIconJpg from "@/style/images/shrewdsteward.jpeg"
+import logoIconJpg from "@/style/images/logo-slang-png.png"
 import logoText from '@/style/images/logo-text.svg';
 
 import useResponsive from '@/hooks/useResponsive';
@@ -186,12 +186,12 @@ function Sidebar({ collapsible, isMobile = false }) {
         height: '100vh',
         direction: langDirection,
         position: isMobile ? 'absolute' : 'relative',
-        bottom: '20px',
+        top: '0px',
+        left: '0px',
         ...(!isMobile && {
           background: 'none',
           border: 'none',
-          [langDirection === 'rtl' ? 'right' : 'left']: '20px',
-          top: '20px',
+          top: '0px',
           borderRadius: '8px',
         }),
       }}
@@ -204,18 +204,18 @@ function Sidebar({ collapsible, isMobile = false }) {
           cursor: 'pointer',
         }}
       >
-        <img src={logoIconJpg} alt="Logo" style={{ marginLeft: '-5px', height: '60px',width:"100px" }} />
 
         {!showLogoApp && (
-          <img
-            src={logoText}
-            alt="Logo"
-            style={{
-              marginTop: '3px',
-              marginLeft: '10px',
-              height: '38px',
-            }}
-          />
+            <img src={logoIconJpg} alt="Logo" style={{ width:"100%" }} />
+          // <img
+          //   src={logoText}
+          //   alt="Logo"
+          //   style={{
+          //     marginTop: '3px',
+          //     marginLeft: '10px',
+          //     height: '38px',
+          //   }}
+          // />
         )}
       </div>
       <Menu

@@ -61,7 +61,7 @@ const AdminInfo = ({ config }) => {
             style={{
               color: '#f56a00',
               backgroundColor: currentAdmin?.photo ? 'none' : '#fde3cf',
-              boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 15px 3px',
+              // boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 15px 3px',
               fontSize: '48px',
             }}
             alt={`${currentAdmin?.name}`}

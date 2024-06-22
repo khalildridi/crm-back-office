@@ -11,11 +11,13 @@
 }
 
 .logo {
-  height: 45px;
-  margin: 15px 15px 30px 30px;
+  margin: 0px 0px 20px 0px;
+  padding: 8px 26px;
   display: flex;
-  justify-content: space-evenly;
-  width: 160px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
 }
 
 .sidebar-wraper {
@@ -40,7 +42,7 @@
 }
 
 .tabsNavigation:hover span {
-  box-shadow: 0px 0px 30px 8px rgba(0, 115, 255, 0.15);
+  /* box-shadow: 0px 0px 30px 8px rgba(0, 115, 255, 0.15); */
   background-color: transparent;
 }
 

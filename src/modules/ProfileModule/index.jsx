@@ -10,8 +10,8 @@ export default function ProfileModule({ config }) {
         <Content
           className="whiteBox shadow"
           style={{
-            padding: '50px 40px',
-            margin: '100px auto',
+            padding: '40px 50px',
+            margin: '0px auto',
             width: '100%',
             maxWidth: '1100px',
           }}
