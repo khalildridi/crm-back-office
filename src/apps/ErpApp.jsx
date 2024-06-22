@@ -46,11 +46,11 @@ export default function ErpCrmApp() {
         </div>
 
         {isMobile ? (
-          <Layout style={{ marginLeft: 0, marginRight: '250px' /* Ajuster pour la sidebar fixe */ }}>
+          <Layout style={{ marginLeft: 0, marginRight: 0 }}>
             <HeaderContent />
             <Content
               style={{
-                margin: '40px auto 30px',
+                margin: '0 auto',
                 overflow: 'initial',
                 width: '100%',
                 padding: '0 25px',
@@ -65,7 +65,7 @@ export default function ErpCrmApp() {
             <HeaderContent />
             <Content
               style={{
-                margin: '40px auto 30px',
+                margin: '0px auto',
                 overflow: 'initial',
                 width: '100%',
                 padding: '0 50px',

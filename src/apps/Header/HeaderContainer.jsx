@@ -33,7 +33,7 @@ export default function HeaderContent() {
           style={{
             color: '#f56a00',
             backgroundColor: currentAdmin?.photo ? 'none' : '#fde3cf',
-            boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 6px 1px',
+            // boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 6px 1px',
           }}
         >
           {currentAdmin?.name?.charAt(0)?.toUpperCase()}
@@ -95,7 +95,8 @@ export default function HeaderContent() {
         display: 'flex',
         flexDirection: langDirection === 'rtl' ? 'row' : 'row-reverse',
         justifyContent: 'flex-start',
-        gap: ' 15px',
+        gap: '15px',
+        marginBottom: '25px'
       }}
     >
       <Dropdown
@@ -111,9 +112,9 @@ export default function HeaderContent() {
           className="last"
           src={currentAdmin?.photo ? FILE_BASE_URL + currentAdmin?.photo : undefined}
           style={{
-            color: '#f56a00',
-            backgroundColor: currentAdmin?.photo ? 'none' : '#fde3cf',
-            boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 10px 2px',
+            color: '#FFF',
+            backgroundColor: '#9F9F9F',
+            // boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 10px 2px',
             float: 'right',
             cursor: 'pointer',
           }}
@@ -130,7 +131,3 @@ export default function HeaderContent() {
     </Header>
   );
 }
-
-//  console.log(
-//    '🚀 Welcome to IDURAR ERP CRM! Did you know that we also offer commercial customization services? Contact us at hello@idurarapp.com for more information.'
-//  );

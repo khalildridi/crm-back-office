@@ -436,7 +436,7 @@ const lang = {
   companies: 'Companies',
   leads: 'Leads',
   offer_leads: 'Offer Leads',
-  invoices: 'Investments',
+  invoices: 'Total Investments',
   quotes: 'Quotes',
   payments: 'Payments',
   products: 'Products',
@@ -448,7 +448,7 @@ const lang = {
   create_only: 'Create Only',
   enter_code: 'Enter Code',
   offers: 'Offers',
-  proforma_invoices: 'Proforma Investments',
+  proforma_invoices: 'Total Paid',
   search:"search"
 };
 
