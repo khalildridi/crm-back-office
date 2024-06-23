@@ -66,16 +66,49 @@ export const erp = {
         });
       }
     },
+  // create:
+  //   ({ entity, jsonData }) =>
+  //   async (dispatch) => {
+  //     dispatch({
+  //       type: actionTypes.REQUEST_LOADING,
+  //       keyState: 'create',
+  //       payload: null,
+  //     });
+
+  //     let data = await request.create({ entity, jsonData });
+
+  //     if (data.success === true) {
+  //       dispatch({
+  //         type: actionTypes.REQUEST_SUCCESS,
+  //         keyState: 'create',
+  //         payload: data.result,
+  //       });
+  //       dispatch({
+  //         type: actionTypes.CURRENT_ITEM,
+  //         payload: data.result,
+  //       });
+  //     } else {
+  //       dispatch({
+  //         type: actionTypes.REQUEST_FAILED,
+  //         keyState: 'create',
+  //         payload: null,
+  //       });
+  //     }
+  //   },
   create:
-    ({ entity, jsonData }) =>
+    ({ entity, jsonData, withUpload = false }) =>
     async (dispatch) => {
       dispatch({
         type: actionTypes.REQUEST_LOADING,
         keyState: 'create',
         payload: null,
       });
-
-      let data = await request.create({ entity, jsonData });
+      let data = null;
+      if (withUpload) {
+        data = await request.createAndUpload({ entity, jsonData });
+      } else {
+        data = await request.create({ entity, jsonData });
+      }
 
       if (data.success === true) {
         dispatch({
@@ -83,6 +116,7 @@ export const erp = {
           keyState: 'create',
           payload: data.result,
         });
+
         dispatch({
           type: actionTypes.CURRENT_ITEM,
           payload: data.result,

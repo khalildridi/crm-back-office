@@ -21,7 +21,7 @@ export default function AdminForm({ isUpdateForm = false, isForAdminOwner = fals
   return (
     <>
       <Form.Item
-        label={translate('first Name')}
+        label={translate('Full Name')}
         name="name"
         rules={[
           {
@@ -31,9 +31,9 @@ export default function AdminForm({ isUpdateForm = false, isForAdminOwner = fals
       >
         <Input autoComplete="off" />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
         label={translate('last Name')}
-        name="surname"
+        name="lastname"
         rules={[
           {
             required: true,
@@ -41,8 +41,8 @@ export default function AdminForm({ isUpdateForm = false, isForAdminOwner = fals
         ]}
       >
         <Input autoComplete="off" />
-      </Form.Item>
-       <Form.Item
+      </Form.Item> */}
+      <Form.Item
         label={translate('surName')}
         name="surname"
         rules={[
@@ -62,6 +62,21 @@ export default function AdminForm({ isUpdateForm = false, isForAdminOwner = fals
           },
           {
             type: 'email',
+          },
+        ]}
+      >
+        <Input autoComplete="off" />
+      </Form.Item>
+
+      <Form.Item
+        label={translate('phone')}
+        name="phone"
+        rules={[
+          {
+            required: true,
+          },
+          {
+            type: 'phone',
           },
         ]}
       >
