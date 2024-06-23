@@ -16,6 +16,12 @@ const InvoiceCreate = lazy(() => import('@/pages/Invoice/InvoiceCreate'));
 
 const InvoiceRead = lazy(() => import('@/pages/Invoice/InvoiceRead'));
 const InvoiceUpdate = lazy(() => import('@/pages/Invoice/InvoiceUpdate'));
+
+const Investor = lazy(() => import('@/pages/Investor'));
+const InvestorCreate = lazy(() => import('@/pages/Investor/InvestorCreate'));
+
+const InvestorRead = lazy(() => import('@/pages/Investor/InvestorRead'));
+const InvestorUpdate = lazy(() => import('@/pages/Investor/InvestorUpdate'));
 const InvoiceRecordPayment = lazy(() => import('@/pages/Invoice/InvoiceRecordPayment'));
 const Quote = lazy(() => import('@/pages/Quote/index'));
 const QuoteCreate = lazy(() => import('@/pages/Quote/QuoteCreate'));
@@ -85,7 +91,7 @@ let routes = {
       path: '/people',
       element: <People />,
     },
-   {
+    {
       path: '/company',
       element: <Company />,
     },
@@ -130,6 +136,24 @@ let routes = {
       path: '/investment/pay/:id',
       element: <InvoiceRecordPayment />,
     },
+
+    {
+      path: '/investor',
+      element: <Investor />,
+    },
+    {
+      path: '/investor/create',
+      element: <InvestorCreate />,
+    },
+    {
+      path: '/investor/read/:id',
+      element: <InvestorRead />,
+    },
+    {
+      path: '/investor/update/:id',
+      element: <InvestorUpdate />,
+    },
+
     {
       path: '/quote',
       element: <Quote />,

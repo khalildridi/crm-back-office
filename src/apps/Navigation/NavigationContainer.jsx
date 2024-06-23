@@ -62,10 +62,15 @@ function Sidebar({ collapsible, isMobile = false }) {
     //   icon: <CustomerServiceOutlined />,
     //   label: <Link to={'/customer'}>{translate('customers')}</Link>,
     // },
+    // {
+    //   key: 'people',
+    //   icon: <UserOutlined />,
+    //   label: <Link to={'/people'}>{translate('peoples')}</Link>,
+    // },
     {
-      key: 'people',
+      key: 'investor',
       icon: <UserOutlined />,
-      label: <Link to={'/people'}>{translate('peoples')}</Link>,
+      label: <Link to={'/investor'}>{translate('investors')}</Link>,
     },
     {
       key: 'company',
@@ -128,7 +133,7 @@ function Sidebar({ collapsible, isMobile = false }) {
           key: 'generalSettings',
           label: <Link to={'/settings'}>{translate('settings')}</Link>,
         },
-           {
+        {
           key: 'admin',
           label: <Link to={'/admin'}>{translate('Admin')}</Link>,
         },

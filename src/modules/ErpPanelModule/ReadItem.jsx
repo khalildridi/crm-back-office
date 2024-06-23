@@ -78,14 +78,15 @@ export default function ReadItem({ config, selectedItem }) {
   const { send, isLoading: mailInProgress } = useMail({ entity });
 
   const { result: currentResult } = useSelector(selectCurrentItem);
+  console.log('result is',currentResult)
 
   const resetErp = {
     status: '',
-    client: {
-      name: '',
+    investor: {
+      firstName: '',
       email: '',
       phone: '',
-      address: '',
+      country: '',
     },
     subTotal: 0,
     taxTotal: 0,
@@ -99,18 +100,23 @@ export default function ReadItem({ config, selectedItem }) {
   const [itemslist, setItemsList] = useState([]);
   const [currentErp, setCurrentErp] = useState(selectedItem ?? resetErp);
   const [client, setClient] = useState({});
+   const [investor, setInvestor] = useState({});
 
   useEffect(() => {
     if (currentResult) {
-      const { items, invoice, ...others } = currentResult;
+      console.log("current result is",currentResult)
+      const { items, investment, ...others } = currentResult;
 
       if (items) {
         setItemsList(items);
-        setCurrentErp(currentResult);
-      } else if (invoice.items) {
-        setItemsList(invoice.items);
-        setCurrentErp({ ...invoice.items, ...others, ...invoice });
+      
       }
+        setCurrentErp(currentResult);
+      //  else 
+      // if (investment?.items) {
+      //   setItemsList(investment.items);
+      //   setCurrentErp({ ...investment.items, ...others, ...invoice });
+      // }
     }
     return () => {
       setItemsList([]);
@@ -122,7 +128,19 @@ export default function ReadItem({ config, selectedItem }) {
     if (currentErp?.client) {
       setClient(currentErp.client[currentErp.client.type]);
     }
+      if (currentErp?.investor) {
+        setInvestor(currentErp.investor[currentErp.investor]);
+      }
   }, [currentErp]);
+
+  console.log('current erp now',currentErp)
+          const investmentDate = currentErp.investmentDate
+            ? new Date(currentErp.investmentDate)
+            : null;
+          const investmentDateFormatted =
+            investmentDate instanceof Date && !isNaN(investmentDate)
+              ? investmentDate.toISOString().substring(0, 10)
+              : '';
 
   return (
     <>
@@ -130,7 +148,8 @@ export default function ReadItem({ config, selectedItem }) {
         onBack={() => {
           navigate(`/${entity.toLowerCase()}`);
         }}
-        title={`${ENTITY_NAME} # ${currentErp.number}/${currentErp.year || ''}`}
+        // ${currentErp.amount}/
+        title ={ `${ENTITY_NAME} # ${investmentDateFormatted}`}
         ghost={false}
         tags={[
           <Tag color={tagColor(currentErp.status)?.color} key="status">
@@ -211,7 +230,7 @@ export default function ReadItem({ config, selectedItem }) {
           <Statistic
             title={translate('SubTotal')}
             value={moneyFormatter({
-              amount: currentErp.subTotal,
+              amount: currentErp.amount,
               currency_code: currentErp.currency,
             })}
             style={{
@@ -220,7 +239,7 @@ export default function ReadItem({ config, selectedItem }) {
           />
           <Statistic
             title={translate('Total')}
-            value={moneyFormatter({ amount: currentErp.total, currency_code: currentErp.currency })}
+            value={moneyFormatter({ amount: currentErp.amount, currency_code: currentErp.currency })}
             style={{
               margin: '0 32px',
             }}
@@ -238,12 +257,44 @@ export default function ReadItem({ config, selectedItem }) {
         </Row>
       </PageHeader>
       <Divider dashed />
-      <Descriptions title={`Client : ${currentErp.client.name}`}>
+      <Descriptions
+        title={`Investor : ${currentErp.investor.firstname} ${currentErp.investor.lastname}`}
+      >
+        <Descriptions.Item label={translate('Country')}>
+          {currentErp.investor?.country}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('email')}>
+          {currentErp.investor?.email}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('Phone')}>
+          {currentErp.investor?.phone}
+        </Descriptions.Item>
+      </Descriptions>
+      <Divider />
+
+      <Divider dashed />
+      <Descriptions
+        title={`Company : ${currentErp.company.name} ${currentErp.company.country}`}
+      >
+        <Descriptions.Item label={translate('Country')}>
+          {currentErp.investor?.country}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('email')}>
+          {currentErp.investor?.email}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('Phone')}>
+          {currentErp.investor?.phone}
+        </Descriptions.Item>
+      </Descriptions>
+      <Divider />
+
+      {/* <Divider dashed /> */}
+      {/* <Descriptions title={`Client : ${currentErp.client.name}`}>
         <Descriptions.Item label={translate('Address')}>{client.address}</Descriptions.Item>
         <Descriptions.Item label={translate('email')}>{client.email}</Descriptions.Item>
         <Descriptions.Item label={translate('Phone')}>{client.phone}</Descriptions.Item>
-      </Descriptions>
-      <Divider />
+      </Descriptions> */}
+      {/* <Divider /> */}
       <Row gutter={[12, 0]}>
         <Col className="gutter-row" span={11}>
           <p>
@@ -279,9 +330,9 @@ export default function ReadItem({ config, selectedItem }) {
         </Col>
         <Divider />
       </Row>
-      {itemslist.map((item) => (
+      {/* {itemslist.map((item) => (
         <Item key={item._id} item={item} currentErp={currentErp}></Item>
-      ))}
+      ))} */}
       <div
         style={{
           width: '300px',
