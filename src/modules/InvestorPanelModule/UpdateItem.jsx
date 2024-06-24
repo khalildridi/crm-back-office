@@ -83,13 +83,14 @@ export default function UpdateItem({ config, UpdateForm }) {
   };
 
   const onSubmit = (fieldsValue) => {
-    let dataToUpdate = { ...fieldsValue };
+    let {created,...dataToUpdate} = { ...fieldsValue };
+    
     if (fieldsValue) {
             if (
-              fieldsValue.created ||
+              // fieldsValue.created ||
               fieldsValue.birthday 
             ) {
-              dataToUpdate.created = dayjs(fieldsValue.created).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+              // dataToUpdate.created = dayjs(fieldsValue.created).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
               dataToUpdate.birthday = dayjs(fieldsValue.birthday).format(
                 'YYYY-MM-DDTHH:mm:ss.SSSZ'
               );

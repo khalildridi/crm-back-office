@@ -4,26 +4,21 @@ import { UploadOutlined } from '@ant-design/icons';
 import useLanguage from '@/locale/useLanguage';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSettings } from '@/redux/settings/selectors';
-// import { fetchCompanyLogoUrl } from '@/redux/settings/actions'; // Importez votre action pour récupérer l'URL du logo
+import { toMediaUrl } from '@/request/checkImage'; // Assurez-vous que le chemin est correct
 
 export default function AppSettingForm() {
   const translate = useLanguage();
   const { result, isLoading } = useSelector(selectSettings);
-  const [logoUrl, setLogoUrl] = useState(null); // State pour stocker l'URL du logo
+  const [logoUrl, setLogoUrl] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isLoading && result && result.company_settings) {
       const logo = result.company_settings.company_logo;
       if (logo) {
-        // Appeler une action Redux pour récupérer l'URL du logo depuis le backend
-        // dispatch(fetchCompanyLogoUrl(logo))
-        //   .then((url) => {
-        //     setLogoUrl(url); // Mettre à jour l'URL du logo dans le state local
-        //   })
-        //   .catch((error) => {
-        //     console.error('Failed to fetch logo URL:', error);
-        //   });
+        // Construire l'URL de l'image en utilisant toMediaUrl
+        const imageUrl = toMediaUrl(logo);
+        setLogoUrl(imageUrl);
       }
     }
   }, [result, isLoading, dispatch]);

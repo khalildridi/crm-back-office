@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Divider } from 'antd';
+import { Form, Divider, Typography, Tabs } from 'antd';
 import dayjs from 'dayjs';
 import { Button, Tag } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
@@ -82,7 +82,7 @@ export default function UpdateItem({ config, UpdateForm }) {
   };
 
   const onSubmit = (fieldsValue) => {
-    let dataToUpdate = { ...fieldsValue };
+    let {date,expiredDate,...dataToUpdate } = { ...fieldsValue };
     if (fieldsValue) {
       if (
         fieldsValue.date ||
@@ -90,8 +90,8 @@ export default function UpdateItem({ config, UpdateForm }) {
         fieldsValue.maturityDate ||
         fieldsValue.investmentDate
       ) {
-        dataToUpdate.date = dayjs(fieldsValue.date).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-        dataToUpdate.expiredDate = dayjs(fieldsValue.expiredDate).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+        // dataToUpdate.date = dayjs(fieldsValue.date).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+        // dataToUpdate.expiredDate = dayjs(fieldsValue.expiredDate).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
         dataToUpdate.maturityDate = dayjs(fieldsValue.maturityDate).format(
           'YYYY-MM-DDTHH:mm:ss.SSSZ'
         );
