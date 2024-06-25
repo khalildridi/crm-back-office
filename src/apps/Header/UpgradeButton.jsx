@@ -62,8 +62,8 @@ export default function UpgradeButton() {
         <Avatar
           icon={<RocketOutlined />}
           style={{
-            color: '#f56a00',
-            backgroundColor: '#FFF',
+            color: '#fff',
+            backgroundColor: '#fde3cf',
             float: 'right',
             marginTop: '5px',
             cursor: 'pointer',

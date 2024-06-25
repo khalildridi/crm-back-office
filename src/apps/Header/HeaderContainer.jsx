@@ -31,7 +31,7 @@ export default function HeaderContent() {
           className="last"
           src={currentAdmin?.photo ? FILE_BASE_URL + currentAdmin?.photo : undefined}
           style={{
-            color: '#f56a00',
+            color: '#fff',
             backgroundColor: currentAdmin?.photo ? 'none' : '#fde3cf',
             // boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 6px 1px',
           }}

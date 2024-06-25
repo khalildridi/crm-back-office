@@ -27,6 +27,7 @@ import {
   FilterOutlined,
   WalletOutlined,
   ReconciliationOutlined,
+  InfoCircleOutlined,
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { selectLangDirection } from '@/redux/translate/selectors';
@@ -92,11 +93,11 @@ function Sidebar({ collapsible, isMobile = false }) {
     //   icon: <FileSyncOutlined />,
     //   label: <Link to={'/quote'}>{translate('proforma invoices')}</Link>,
     // },
-    // {
-    //   key: 'payment',
-    //   icon: <CreditCardOutlined />,
-    //   label: <Link to={'/payment'}>{translate('payments')}</Link>,
-    // },
+    {
+      key: 'payment',
+      icon: <CreditCardOutlined />,
+      label: <Link to={'/payment'}>{translate('payments')}</Link>,
+    },
 
     // {
     //   key: 'product',
@@ -141,11 +142,12 @@ function Sidebar({ collapsible, isMobile = false }) {
         //   key: 'taxes',
         //   label: <Link to={'/taxes'}>{translate('taxes')}</Link>,
         // },
-        {
-          key: 'about',
-          label: <Link to={'/about'}>{translate('about')}</Link>,
-        },
       ],
+    },
+    {
+      key: 'about',
+      icon: <InfoCircleOutlined />,
+      label: <Link to={'/about'}>{translate('about')}</Link>,
     },
   ];
 
