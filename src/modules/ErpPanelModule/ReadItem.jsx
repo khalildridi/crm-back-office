@@ -1,7 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Divider } from 'antd';
+import {
+  Button,
+  Row,
+  Col,
+  Descriptions,
+  Statistic,
+  Tag,
+  Card,
+  Tabs,
+  Space,
+  Divider,
+  Typography,
+} from 'antd';
 
-import { Button, Row, Col, Descriptions, Statistic, Tag } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
 import {
   EditOutlined,
@@ -9,6 +20,14 @@ import {
   CloseCircleOutlined,
   RetweetOutlined,
   MailOutlined,
+  InfoCircleOutlined,
+  UserOutlined,
+  PhoneOutlined,
+  EnvironmentOutlined,
+  BarcodeOutlined,
+  ProfileOutlined,
+  CalendarOutlined,
+  ManOutlined,
 } from '@ant-design/icons';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,6 +43,8 @@ import { useMoney, useDate } from '@/settings';
 import useMail from '@/hooks/useMail';
 import { useNavigate } from 'react-router-dom';
 import { tagColor } from '@/utils/statusTagColor';
+const { TabPane } = Tabs;
+const { Title } = Typography;
 
 const Item = ({ item, currentErp }) => {
   const { moneyFormatter } = useMoney();
@@ -78,14 +99,15 @@ export default function ReadItem({ config, selectedItem }) {
   const { send, isLoading: mailInProgress } = useMail({ entity });
 
   const { result: currentResult } = useSelector(selectCurrentItem);
+  console.log('result is',currentResult)
 
   const resetErp = {
     status: '',
-    client: {
-      name: '',
+    investor: {
+      firstName: '',
       email: '',
       phone: '',
-      address: '',
+      country: '',
     },
     subTotal: 0,
     taxTotal: 0,
@@ -99,18 +121,23 @@ export default function ReadItem({ config, selectedItem }) {
   const [itemslist, setItemsList] = useState([]);
   const [currentErp, setCurrentErp] = useState(selectedItem ?? resetErp);
   const [client, setClient] = useState({});
+   const [investor, setInvestor] = useState({});
 
   useEffect(() => {
     if (currentResult) {
-      const { items, invoice, ...others } = currentResult;
+      console.log("current result is",currentResult)
+      const { items, investment, ...others } = currentResult;
 
       if (items) {
         setItemsList(items);
-        setCurrentErp(currentResult);
-      } else if (invoice.items) {
-        setItemsList(invoice.items);
-        setCurrentErp({ ...invoice.items, ...others, ...invoice });
+      
       }
+        setCurrentErp(currentResult);
+      //  else 
+      // if (investment?.items) {
+      //   setItemsList(investment.items);
+      //   setCurrentErp({ ...investment.items, ...others, ...invoice });
+      // }
     }
     return () => {
       setItemsList([]);
@@ -122,7 +149,19 @@ export default function ReadItem({ config, selectedItem }) {
     if (currentErp?.client) {
       setClient(currentErp.client[currentErp.client.type]);
     }
+      if (currentErp?.investor) {
+        setInvestor(currentErp.investor[currentErp.investor]);
+      }
   }, [currentErp]);
+
+  console.log('current erp now',currentErp)
+          const investmentDate = currentErp.investmentDate
+            ? new Date(currentErp.investmentDate)
+            : null;
+          const investmentDateFormatted =
+            investmentDate instanceof Date && !isNaN(investmentDate)
+              ? investmentDate.toISOString().substring(0, 10)
+              : '';
 
   return (
     <>
@@ -130,7 +169,8 @@ export default function ReadItem({ config, selectedItem }) {
         onBack={() => {
           navigate(`/${entity.toLowerCase()}`);
         }}
-        title={`${ENTITY_NAME} # ${currentErp.number}/${currentErp.year || ''}`}
+        // ${currentErp.amount}/
+        title={`${ENTITY_NAME} # ${investmentDateFormatted}`}
         ghost={false}
         tags={[
           <Tag color={tagColor(currentErp.status)?.color} key="status">
@@ -211,7 +251,7 @@ export default function ReadItem({ config, selectedItem }) {
           <Statistic
             title={translate('SubTotal')}
             value={moneyFormatter({
-              amount: currentErp.subTotal,
+              amount: currentErp.amount,
               currency_code: currentErp.currency,
             })}
             style={{
@@ -220,7 +260,10 @@ export default function ReadItem({ config, selectedItem }) {
           />
           <Statistic
             title={translate('Total')}
-            value={moneyFormatter({ amount: currentErp.total, currency_code: currentErp.currency })}
+            value={moneyFormatter({
+              amount: currentErp.amount,
+              currency_code: currentErp.currency,
+            })}
             style={{
               margin: '0 32px',
             }}
@@ -238,51 +281,210 @@ export default function ReadItem({ config, selectedItem }) {
         </Row>
       </PageHeader>
       <Divider dashed />
-      <Descriptions title={`Client : ${currentErp.client.name}`}>
-        <Descriptions.Item label={translate('Address')}>{client.address}</Descriptions.Item>
-        <Descriptions.Item label={translate('email')}>{client.email}</Descriptions.Item>
-        <Descriptions.Item label={translate('Phone')}>{client.phone}</Descriptions.Item>
-      </Descriptions>
-      <Divider />
+      <Tabs defaultActiveKey="1">
+        <TabPane
+          tab={
+            <span>
+              <InfoCircleOutlined style={{ marginRight: '4px' }} />
+              {translate('Investor Information')}
+            </span>
+          }
+          key="1"
+        >
+          <Descriptions
+            bordered
+            column={1}
+            size="small"
+            layout="horizontal"
+            labelStyle={{ fontWeight: 'bold', backgroundColor: '#fff', color: '#000' }}
+            contentStyle={{ backgroundColor: '#fff', padding: '10px', borderRadius: '4px' }}
+          >
+            <Descriptions.Item
+              label={
+                <>
+                  <UserOutlined /> {translate('First Name')}
+                </>
+              }
+            >
+              {currentErp.investor.firstname}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <UserOutlined /> {translate('Last Name')}
+                </>
+              }
+            >
+              {currentErp.investor.lastname}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <PhoneOutlined /> {translate('Phone')}
+                </>
+              }
+            >
+              {currentErp.investor.phone}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <MailOutlined /> {translate('Email')}
+                </>
+              }
+            >
+              {currentErp.investor.email}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <EnvironmentOutlined /> {translate('Country')}
+                </>
+              }
+            >
+              {currentErp.investor.country}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <EnvironmentOutlined /> {translate('City')}
+                </>
+              }
+            >
+              {currentErp.investor.city}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <BarcodeOutlined /> {translate('Postal Code')}
+                </>
+              }
+            >
+              {currentErp.investor.postalCode}
+            </Descriptions.Item>
+          </Descriptions>
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <InfoCircleOutlined style={{ marginRight: '4px' }} />
+              {translate('Company Information')}
+            </span>
+          }
+          key="2"
+        >
+          <Descriptions
+            bordered
+            column={1}
+            size="small"
+            layout="horizontal"
+            labelStyle={{ fontWeight: 'bold', backgroundColor: '#fff', color: '#000' }}
+            contentStyle={{ backgroundColor: '#fff', padding: '10px', borderRadius: '4px' }}
+          >
+            <Descriptions.Item
+              label={
+                <>
+                  <UserOutlined /> {translate('Company Name')}
+                </>
+              }
+            >
+              {currentErp.company.name}
+            </Descriptions.Item>
+            {/* <Descriptions.Item
+              label={
+                <>
+                  <UserOutlined /> {translate('Description')}
+                </>
+              }
+            >
+              {currentErp.company.description}
+            </Descriptions.Item> */}
+            <Descriptions.Item
+              label={
+                <>
+                  <PhoneOutlined /> {translate('Phone')}
+                </>
+              }
+            >
+              {currentErp.company.phone}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <MailOutlined /> {translate('Email')}
+                </>
+              }
+            >
+              {currentErp.company.email}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <>
+                  <EnvironmentOutlined /> {translate('Country')}
+                </>
+              }
+            >
+              {currentErp.company.country}
+            </Descriptions.Item>
+            {/* <Descriptions.Item
+              label={
+                <>
+                  <EnvironmentOutlined /> {translate('City')}
+                </>
+              }
+            >
+              {currentErp.investor.city}
+            </Descriptions.Item> */}
+            {/* <Descriptions.Item
+              label={
+                <>
+                  <BarcodeOutlined /> {translate('Postal Code')}
+                </>
+              }
+            >
+              {currentErp.investor.postalCode}
+            </Descriptions.Item> */}
+          </Descriptions>
+        </TabPane>
+      </Tabs>
+
+      <Divider dashed />
       <Row gutter={[12, 0]}>
-        <Col className="gutter-row" span={11}>
+        <Col className="gutter-row" span={24}>
           <p>
-            <strong>{translate('Product')}</strong>
+            <strong>{translate('Investment Details :')}</strong>
           </p>
         </Col>
-        <Col className="gutter-row" span={4}>
-          <p
-            style={{
-              textAlign: 'right',
-            }}
-          >
-            <strong>{translate('Price')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <p
-            style={{
-              textAlign: 'right',
-            }}
-          >
-            <strong>{translate('Quantity')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={5}>
-          <p
-            style={{
-              textAlign: 'right',
-            }}
-          >
-            <strong>{translate('Total')}</strong>
-          </p>
-        </Col>
-        <Divider />
       </Row>
-      {itemslist.map((item) => (
+      <Descriptions
+        bordered
+        column={1}
+        size="small"
+        layout="horizontal"
+        labelStyle={{ fontWeight: 'bold', backgroundColor: '#fff', color: '#000' }}
+        contentStyle={{ backgroundColor: '#fff', padding: '10px', borderRadius: '4px' }}
+      >
+        <Descriptions.Item label={translate('Duration')}>{currentErp.duration}</Descriptions.Item>
+        <Descriptions.Item label={translate('Interest Rate')}>
+          {currentErp.interestRate}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('Currency')}>{currentErp.currency}</Descriptions.Item>
+        <Descriptions.Item label={translate('Approved')}>
+          {currentErp.approved ? translate('Yes') : translate('No')}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('Notes')}>{currentErp.notes}</Descriptions.Item>
+        <Descriptions.Item label={translate('Created')}>
+          {new Date(currentErp.created).toLocaleString()}
+        </Descriptions.Item>
+        <Descriptions.Item label={translate('Updated')}>
+          {new Date(currentErp.updated).toLocaleString()}
+        </Descriptions.Item>
+      </Descriptions>
+
+      {/* {itemslist.map((item) => (
         <Item key={item._id} item={item} currentErp={currentErp}></Item>
-      ))}
-      <div
+      ))} */}
+      {/* <div
         style={{
           width: '300px',
           float: 'right',
@@ -319,7 +521,7 @@ export default function ReadItem({ config, selectedItem }) {
             </p>
           </Col>
         </Row>
-      </div>
+      </div> */}
     </>
   );
 }

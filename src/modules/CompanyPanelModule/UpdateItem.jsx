@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Divider, Typography, Tabs } from 'antd';
+import { Form, Divider } from 'antd';
 import dayjs from 'dayjs';
 import { Button, Tag } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
@@ -44,11 +44,12 @@ export default function UpdateItem({ config, UpdateForm }) {
 
   const resetErp = {
     status: '',
-    client: {
+    enabled:'',
+    investor: {
       name: '',
       email: '',
       phone: '',
-      address: '',
+      // address: '',
     },
     subTotal: 0,
     taxTotal: 0,
@@ -82,23 +83,36 @@ export default function UpdateItem({ config, UpdateForm }) {
   };
 
   const onSubmit = (fieldsValue) => {
-    let {date,expiredDate,...dataToUpdate } = { ...fieldsValue };
+    let dataToUpdate = { ...fieldsValue };
     if (fieldsValue) {
-      if (
-        fieldsValue.date ||
-        fieldsValue.expiredDate ||
-        fieldsValue.maturityDate ||
-        fieldsValue.investmentDate
-      ) {
-        // dataToUpdate.date = dayjs(fieldsValue.date).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-        // dataToUpdate.expiredDate = dayjs(fieldsValue.expiredDate).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-        dataToUpdate.maturityDate = dayjs(fieldsValue.maturityDate).format(
-          'YYYY-MM-DDTHH:mm:ss.SSSZ'
-        );
-        dataToUpdate.investmentDate = dayjs(fieldsValue.investmentDate).format(
-          'YYYY-MM-DDTHH:mm:ss.SSSZ'
-        );
-      }
+            if (
+              fieldsValue.created ||
+              fieldsValue.birthday 
+            ) {
+              dataToUpdate.created = dayjs(fieldsValue.created).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+              dataToUpdate.birthday = dayjs(fieldsValue.birthday).format(
+                'YYYY-MM-DDTHH:mm:ss.SSSZ'
+              );
+  
+            }
+      // if (
+      //   fieldsValue.date ||
+      //   fieldsValue.expiredDate ||
+      //   fieldsValue.maturityDate ||
+      //   fieldsValue.investmentDate
+      // ) {
+      //   dataToUpdate.date = dayjs(fieldsValue.date).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+      //   dataToUpdate.expiredDate = dayjs(fieldsValue.expiredDate).format(
+      //     'YYYY-MM-DDTHH:mm:ss.SSSZ'
+      //   );
+      //   dataToUpdate.maturityDate = dayjs(fieldsValue.maturityDate).format(
+      //     'YYYY-MM-DDTHH:mm:ss.SSSZ'
+      //   );
+      //   dataToUpdate.investmentDate = dayjs(fieldsValue.investmentDate).format(
+      //     'YYYY-MM-DDTHH:mm:ss.SSSZ'
+      //   );
+      // }
+
       if (fieldsValue.items) {
         let newList = [];
         fieldsValue.items.map((item) => {
@@ -128,18 +142,15 @@ export default function UpdateItem({ config, UpdateForm }) {
       if (formData.date) {
         formData.date = dayjs(formData.date);
       }
-      if (formData.expiredDate) {
-        formData.expiredDate = dayjs(formData.expiredDate);
+      if (formData.birthday) {
+        formData.birthday = dayjs(formData.birthday);
       }
-       if (formData.maturityDate) {
-         formData.maturityDate = dayjs(formData.maturityDate);
-       }
-       if (formData.investmentDate) {
-         formData.investmentDate = dayjs(formData.investmentDate);
-       }
-      if (!formData.taxRate) {
-        formData.taxRate = 0;
+      if (formData.created) {
+        formData.created = dayjs(formData.created);
       }
+      // if (!formData.taxRate) {
+      //   formData.taxRate = 0;
+      // }
 
       const { subTotal } = formData;
 
@@ -161,9 +172,9 @@ export default function UpdateItem({ config, UpdateForm }) {
           <Tag color={tagColor(currentErp.status)?.color} key="status">
             {currentErp.status && translate(currentErp.status)}
           </Tag>,
-          currentErp.paymentStatus && (
-            <Tag color={tagColor(currentErp.paymentStatus)?.color} key="paymentStatus">
-              {currentErp.paymentStatus && translate(currentErp.paymentStatus)}
+          currentErp.enabled && (
+            <Tag color="green" key="enabled">
+              {translate('Enabled')}
             </Tag>
           ),
         ]}

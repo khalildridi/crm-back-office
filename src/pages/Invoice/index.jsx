@@ -9,20 +9,20 @@ import InvoiceDataTableModule from '@/modules/InvoiceModule/InvoiceDataTableModu
 export default function Invoice() {
   const translate = useLanguage();
   const { dateFormat } = useDate();
-  const entity = 'invoice';
+  const entity = 'investment';
   const { moneyFormatter } = useMoney();
 
   const searchConfig = {
-    entity: 'client',
-    displayLabels: ['name'],
-    searchFields: 'name',
+    entity: 'investor',
+    displayLabels: ['email'],
+    searchFields: 'email',
   };
-  const deleteModalLabels = ['number', 'client.name'];
+  const deleteModalLabels = ['number', 'investor.email'];
   const dataTableColumns = [
   
     {
       title: translate('Investor'),
-      dataIndex: ['people', 'name'],
+      dataIndex: ['investor', 'email'],
     },
        {
       title: translate('Company'),
@@ -112,10 +112,10 @@ export default function Invoice() {
   ];
 
   const Labels = {
-    PANEL_TITLE: translate('invoice'),
-    DATATABLE_TITLE: translate('invoice_list'),
-    ADD_NEW_ENTITY: translate('add_new_invoice'),
-    ENTITY_NAME: translate('invoice'),
+    PANEL_TITLE: translate('investment'),
+    DATATABLE_TITLE: translate('investment_list'),
+    ADD_NEW_ENTITY: translate('add_new_investment'),
+    ENTITY_NAME: translate('investment'),
 
     RECORD_ENTITY: translate('record_payment'),
   };

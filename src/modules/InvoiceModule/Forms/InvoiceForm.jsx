@@ -78,12 +78,12 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
             ]}
           >
             <AutoCompleteAsync
-              entity={'people'}
-              displayLabels={['name']}
-              searchFields={'name'}
+              entity={'investor'}
+              displayLabels={['email']}
+              searchFields={'email'}
               redirectLabel={'Add New Investor'}
               withRedirect
-              urlToRedirect={'/people'}
+              urlToRedirect={'/investor'}
             />
           </Form.Item>
         </Col>
@@ -226,7 +226,8 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
       <Col className="gutter-row" span={7}>
       <Form.Item
         label={translate('Currency')}
-        name="default_currency_code"
+        name="currency"
+        // "default_currency_code"
         rules={[
           {
             required: true,
