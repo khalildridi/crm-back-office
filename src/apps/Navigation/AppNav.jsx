@@ -14,12 +14,13 @@ import {
   ShopOutlined,
   FilterOutlined,
   WalletOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 
 const AppNav = ({ translate }) => [
   {
     key: 'dashboard',
-    icon: <DashboardOutlined />,
+    icon: <HomeOutlined />,
     label: <Link to={'/'}>{translate('dashboard')}</Link>,
   },
   {

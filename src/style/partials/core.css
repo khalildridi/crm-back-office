@@ -8,8 +8,7 @@
   top: 50%;
   width: 32px;
   height: 38px;
-  margin-left: -16px;
-  margin-top: -19px;
+  transform: translate(-50%,-50%);
 }
 @keyframes rotate {
   0% {

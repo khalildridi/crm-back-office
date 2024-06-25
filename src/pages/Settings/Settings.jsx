@@ -27,18 +27,18 @@ export default function Settings() {
       icon: <SettingOutlined />,
       children: <GeneralSettings />,
     },
-    {
-      key: 'company_settings',
-      label: translate('Company Settings'),
-      icon: <TrophyOutlined />,
-      children: <CompanySettings />,
-    },
-    {
-      key: 'company_logo',
-      label: translate('Company Logo'),
-      icon: <FileImageOutlined />,
-      children: <CompanyLogoSettings />,
-    },
+    // {
+    //   key: 'company_settings',
+    //   label: translate('Company Settings'),
+    //   icon: <TrophyOutlined />,
+    //   children: <CompanySettings />,
+    // },
+    // {
+    //   key: 'company_logo',
+    //   label: translate('Company Logo'),
+    //   icon: <FileImageOutlined />,
+    //   children: <CompanyLogoSettings />,
+    // },
     {
       key: 'currency_settings',
       label: translate('Currency Settings'),

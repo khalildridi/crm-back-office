@@ -6,7 +6,7 @@ import { useAppContext } from '@/context/appContext';
 
 import useLanguage from '@/locale/useLanguage';
 import logoIcon from '@/style/images/logo-icon.svg';
-import logoIconJpg from "@/style/images/logo-slang-png.png"
+import logoIconJpg from "@/style/images/long-logo.jpg"
 import logoText from '@/style/images/logo-text.svg';
 
 import useResponsive from '@/hooks/useResponsive';
@@ -28,6 +28,7 @@ import {
   WalletOutlined,
   ReconciliationOutlined,
   InfoCircleOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { selectLangDirection } from '@/redux/translate/selectors';
@@ -55,7 +56,7 @@ function Sidebar({ collapsible, isMobile = false }) {
   const items = [
     {
       key: 'dashboard',
-      icon: <DashboardOutlined />,
+      icon: <HomeOutlined />,
       label: <Link to={'/'}>{translate('dashboard')}</Link>,
     },
     // {
