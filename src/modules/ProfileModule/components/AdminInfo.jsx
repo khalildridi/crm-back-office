@@ -59,7 +59,7 @@ const AdminInfo = ({ config }) => {
             src={currentAdmin?.photo ? FILE_BASE_URL + currentAdmin?.photo : undefined}
             size={96}
             style={{
-              color: '#f56a00',
+              color: '#fff',
               backgroundColor: currentAdmin?.photo ? 'none' : '#fde3cf',
               // boxShadow: 'rgba(150, 190, 238, 0.35) 0px 0px 15px 3px',
               fontSize: '48px',

@@ -22,4 +22,5 @@
   background: #fff; /* Couleur de fond */
   z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
   width: fit-content; /* Largeur de la sidebar */
+  box-shadow: 0 10px 10px -5px #0000005c;
 }
