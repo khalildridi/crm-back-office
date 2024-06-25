@@ -15,6 +15,7 @@
     "axios": "^1.6.2",
     "cross-env": "7.0.3",
     "currency.js": "2.0.4",
+    "date-fns": "^3.6.0",
     "dayjs": "^1.11.10",
     "just-compare": "^2.3.0",
     "quill": "^2.0.2",
@@ -35,7 +36,6 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start": "vite preview --port 3000",
-
     "dev:remote": "cross-env VITE_DEV_REMOTE=remote npm run dev"
   },
   "devDependencies": {

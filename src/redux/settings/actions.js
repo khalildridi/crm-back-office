@@ -172,4 +172,26 @@ export const settingsAction = {
         });
       }
     },
+
+  //    fetchCompanyLogoUrl:({entity,logoPath}) =>
+  //  async (dispatch) => {
+  //     dispatch({
+  //       type: actionTypes.REQUEST_LOADING,
+  //     });
+
+  //     let data = await request.getImage({ entity,logoPath });
+
+  //     if (data.success === true) {
+  //       const payload = dispatchSettingsData(data.result);
+  //       window.localStorage.setItem('settings', JSON.stringify(dispatchSettingsData(data.result)));
+
+  //       dispatch({
+  //         type: actionTypes.REQUEST_SUCCESS,
+  //         payload,
+  //       });
+  //     } else {
+  //       dispatch({
+  //         type: actionTypes.REQUEST_FAILED,
+  //       });
+  //     }
 };

@@ -8,6 +8,7 @@ import useLanguage from '@/locale/useLanguage';
 import { translateAction } from '@/redux/translate/actions';
 import { countryList } from '@/utils/countryList';
 import { selectLangDirection } from '@/redux/translate/selectors';
+import { currencyOptions, languageOptions } from '@/utils/currencyList';
 // import languages from '@/locale';
 
 export default function GeneralSettingForm() {
@@ -16,7 +17,27 @@ export default function GeneralSettingForm() {
   // console.log("language is",languages)
 const langDirection=useSelector(selectLangDirection)
   return (
-    <div style={{direction:langDirection}}>
+    <div style={{ direction: langDirection }}>
+      <Form.Item
+        label={translate('Language')}
+        name="idurar_app_language"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          showSearch
+          filterOption={(input, option) =>
+            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+          }
+          filterSort={(optionA, optionB) =>
+            (optionA?.label ?? '').toLowerCase().startsWith((optionB?.label ?? '').toLowerCase())
+          }
+          options={languageOptions()}
+        ></Select>
+      </Form.Item>
       {/* <Form.Item
         label={translate('language')}
         name="idurar_app_language"

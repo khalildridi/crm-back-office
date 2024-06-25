@@ -17,3 +17,5 @@ export default async function checkImage(path) {
 
   return result;
 }
+
+export const toMediaUrl = (pathname) => `${BASE_URL}/api/setting/image?imagePath=${pathname}`;
