@@ -1,5 +1,5 @@
 import { ErpLayout } from '@/layout';
-import ErpPanel from '@/modules/ErpPanelModule';
+import CompanyPanel from '@/modules/CompanyPanelModule';
 import useLanguage from '@/locale/useLanguage';
 import { CreditCardOutlined } from '@ant-design/icons';
 
@@ -7,7 +7,7 @@ export default function CompanyDataTableModule({ config }) {
   const translate = useLanguage();
   return (
     <ErpLayout>
-      <ErpPanel
+      <CompanyPanel
         config={config}
         extra={[
           {
@@ -16,7 +16,7 @@ export default function CompanyDataTableModule({ config }) {
             icon: <CreditCardOutlined />,
           },
         ]}
-      ></ErpPanel>
+      ></CompanyPanel>
     </ErpLayout>
   );
 }

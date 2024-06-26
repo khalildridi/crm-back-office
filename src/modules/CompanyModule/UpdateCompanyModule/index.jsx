@@ -1,8 +1,8 @@
 import NotFound from '@/components/NotFound';
 
 import { ErpLayout } from '@/layout';
-import UpdateItem from '@/modules/ErpPanelModule/UpdateItem';
-import CompanyForm from '@/modules/CompanyModule/Forms/CompanyForm';
+import UpdateItem from '@/modules/CompanyPanelModule/UpdateItem';
+import CompanyForm from '@/modules/CompanyModule/Forms/UpdateCompanyForm';
 
 import PageLoader from '@/components/PageLoader';
 
@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 
 import { settingsAction } from '@/redux/settings/actions';
 
-export default function UpdateInvoiceModule({ config }) {
+export default function UpdateCompanyModule({ config }) {
   const dispatch = useDispatch();
 
   const { id } = useParams();

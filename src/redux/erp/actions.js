@@ -330,4 +330,35 @@ export const erp = {
     async () => {
       await request.convert({ entity, id });
     },
+  upload:
+    ({ entity, jsonData }) =>
+    async (dispatch) => {
+      dispatch({
+        type: actionTypes.REQUEST_LOADING,
+      });
+
+      let data = await request.createAndUpload({
+        entity: entity,
+        jsonData,
+      });
+
+       if (data.success === true) {
+        dispatch({
+          type: actionTypes.REQUEST_SUCCESS,
+          keyState: 'create',
+          payload: data.result,
+        });
+
+        dispatch({
+          type: actionTypes.CURRENT_ITEM,
+          payload: data.result,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.REQUEST_FAILED,
+          keyState: 'create',
+          payload: null,
+        });
+      }
+    },
 };

@@ -1,0 +1,19 @@
+.image-container {
+  display: inline;
+  /* justify-content: center;
+  align-items: center;
+  height: 50%; */
+}
+
+.centered-image {
+  max-width: 12%;
+  max-height: 12%;
+  border-radius: 8px; /* Arrondi les coins de l'image */
+  border: 2px solid #ccc; /* Bordure de l'image */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  transition: transform 0.3s ease; /* Animation de transition */
+}
+
+.centered-image:hover {
+  transform: scale(1.05); /* Zoom sur l'image au survol */
+}

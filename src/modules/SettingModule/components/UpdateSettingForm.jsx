@@ -20,6 +20,7 @@ export default function UpdateSettingForm({ config, children, withUpload, upload
     if (withUpload) {
       if (fieldsValue.file) {
         fieldsValue.file = fieldsValue.file[0].originFileObj;
+        console.log(' fieldsValue.file', fieldsValue.file);
       }
       dispatch(
         settingsAction.upload({ entity, settingKey: uploadSettingKey, jsonData: fieldsValue })

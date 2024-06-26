@@ -69,7 +69,7 @@ export default function DataTable({ config, extra = [] }) {
       key: 'download',
       icon: <FilePdfOutlined />,
     },
-    ...extra,
+    // ...extra,
     {
       type: 'divider',
     },
@@ -101,10 +101,10 @@ export default function DataTable({ config, extra = [] }) {
     modal.open();
   };
 
-  const handleRecordPayment = (record) => {
-    dispatch(erp.currentItem({ data: record }));
-    navigate(`/investment/pay/${record._id}`);
-  };
+  // const handleRecordPayment = (record) => {
+  //   dispatch(erp.currentItem({ data: record }));
+  //   navigate(`/investment/pay/${record._id}`);
+  // };
 
   dataTableColumns = [
     ...dataTableColumns,

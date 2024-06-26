@@ -1,6 +1,6 @@
 import NotFound from '@/components/NotFound';
 import { ErpLayout } from '@/layout';
-import ReadItem from '@/modules/ErpPanelModule/ReadItem';
+import ReadItem from '@/modules/CompanyPanelModule/ReadItem';
 
 import PageLoader from '@/components/PageLoader';
 import { erp } from '@/redux/erp/actions';
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
 
-export default function ReadInvoiceModule({ config }) {
+export default function ReadCompanyModule({ config }) {
   const dispatch = useDispatch();
   const { id } = useParams();
 

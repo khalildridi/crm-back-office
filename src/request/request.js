@@ -77,6 +77,22 @@ const request = {
       return errorHandler(error);
     }
   },
+  createAndUpload: async ({ entity, jsonData }) => {
+    try {
+      const response = await axios.post(entity + '/form-data/create', jsonData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      successHandler(response, {
+        notifyOnSuccess: true,
+        notifyOnFailed: true,
+      });
+      return response.data;
+    } catch (error) {
+      return errorHandler(error);
+    }
+  },
 
   delete: async ({ entity, id }) => {
     try {
@@ -186,11 +202,15 @@ const request = {
       return errorHandler(error);
     }
   },
-  getImage: async ({ entity,imagePath }) => {
+  getImage: async ({ entity, imagePath }) => {
     try {
-      const response = await axios.get(entity+'/image/'+imagePath);
+      const response = await axios.get(entity + '/image/' + imagePath);
+      console.log('response is', response);
+
+      console.log('response.data is', response.data);
       return response.data;
     } catch (error) {
+      console.log('errorrrrr is', error);
       return errorHandler(error);
     }
   },
@@ -256,6 +276,17 @@ const request = {
       successHandler(response, {
         notifyOnSuccess: true,
         notifyOnFailed: true,
+      });
+      return response.data;
+    } catch (error) {
+      return errorHandler(error);
+    }
+  },
+
+  getImage: async ({ entity, imagePath }) => {
+    try {
+      const response = await axios.get(`${entity}/images?imagePath=${imagePath}`, {
+        responseType: 'blob',
       });
       return response.data;
     } catch (error) {

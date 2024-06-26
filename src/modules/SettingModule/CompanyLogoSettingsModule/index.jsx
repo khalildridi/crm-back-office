@@ -5,6 +5,7 @@ import AppSettingForm from './forms/AppSettingForm';
 import useLanguage from '@/locale/useLanguage';
 
 export default function CompanyLogoSettingsModule({ config }) {
+  console.log("config is",config)
   const translate = useLanguage();
   return (
     <UpdateSettingModule config={config} uploadSettingKey="company_logo" withUpload>

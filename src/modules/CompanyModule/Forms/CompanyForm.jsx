@@ -105,10 +105,10 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
           </Form.Item>
         </Col>
         <Col span={20}>
-         <Form.Item
+        <Form.Item
         name="logo"
         label="Logo"
-        valuePropName="fileList"
+        valuePropName="fileList" 
         getValueFromEvent={(e) => e.fileList}
       >
         <Upload
@@ -121,26 +121,6 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
         </Upload>
       </Form.Item>
       </Col>
-        {/* <Col className="gutter-row" span={8}>
-          <Form.Item
-            name="client"
-            label={translate('Client')}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <AutoCompleteAsync
-              entity={'client'}
-              displayLabels={['name']}
-              searchFields={'name'}
-              redirectLabel={'Add New Client'}
-              withRedirect
-              urlToRedirect={'/customer'}
-            />
-          </Form.Item>
-        </Col> */}
 
       <Col className="gutter-row" span={6}>
         <Form.Item
@@ -207,20 +187,7 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
         </Select>
       </Form.Item>
       </Col>
-        {/* <Col className="gutter-row" span={3}>
-          <Form.Item
-            label={translate('number')}
-            name="number"
-            initialValue={lastNumber}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <InputNumber min={1} style={{ width: '100%' }} />
-          </Form.Item>
-        </Col> */}
+
         <Col className="gutter-row" span={4}>
           <Form.Item
             label={translate('annual revenue')}
@@ -235,41 +202,6 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
             <InputNumber min={1} style={{ width: '100%' }} />
           </Form.Item>
         </Col>
-        {/* <Col className="gutter-row" span={3}>
-          <Form.Item
-            label={translate('year')}
-            name="year"
-            initialValue={currentYear}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <InputNumber style={{ width: '100%' }} />
-          </Form.Item>
-        </Col> */}
-
-        {/* <Col className="gutter-row" span={5}>
-          <Form.Item
-            label={translate('status')}
-            name="status"
-            rules={[
-              {
-                required: false,
-              },
-            ]}
-            initialValue={'draft'}
-          >
-            <Select
-              options={[
-                { value: 'draft', label: translate('Draft') },
-                { value: 'pending', label: translate('Pending') },
-                { value: 'sent', label: translate('Sent') },
-              ]}
-            ></Select>
-          </Form.Item>
-        </Col> */}
 
         <Col className="gutter-row" span={8}>
           <Form.Item
@@ -286,21 +218,7 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
             <DatePicker style={{ width: '100%' }} format={dateFormat} />
           </Form.Item>
         </Col>
-        {/* <Col className="gutter-row" span={6}>
-          <Form.Item
-            name="expiredDate"
-            label={translate('Expire Date')}
-            rules={[
-              {
-                required: true,
-                type: 'object',
-              },
-            ]}
-            initialValue={dayjs().add(30, 'days')}
-          >
-            <DatePicker style={{ width: '100%' }} format={dateFormat} />
-          </Form.Item>
-        </Col> */}
+   
         <Col className="gutter-row" span={14}>
           <Form.Item label={translate('Note')} name="notes">
             <Input />
@@ -308,55 +226,8 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
         </Col>
       </Row>
       <Divider dashed />
-      {/* <Row gutter={[12, 12]} style={{ position: 'relative' }}>
-        <Col className="gutter-row" span={5}>
-          <p>{translate('Item')}</p>
-        </Col>
-        <Col className="gutter-row" span={7}>
-          <p>{translate('Description')}</p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p>{translate('Quantity')}</p>{' '}
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <p>{translate('Price')}</p>
-        </Col>
-        <Col className="gutter-row" span={5}>
-          <p>{translate('Total')}</p>
-        </Col>
-      </Row> */}
-      {/* <Form.List name="items">
-        {(fields, { add, remove }) => (
-          <>
-            {fields.map((field) => (
-              <ItemRow key={field.key} remove={remove} field={field} current={current}></ItemRow>
-            ))}
-            <Form.Item>
-              <Button
-                type="dashed"
-                onClick={() => add()}
-                block
-                icon={<PlusOutlined />}
-                ref={addField}
-              >
-                {translate('Add field')}
-              </Button>
-            </Form.Item>
-          </>
-        )}
-      </Form.List> */}
-      <Divider dashed />
-      {/* <div style={{ position: 'relative', width: ' 100%', float: 'right' }}>
-        <Row gutter={[12, -5]}>
-          <Col className="gutter-row" span={5}>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" icon={<PlusOutlined />} block>
-                {translate('Save')}
-              </Button>
-            </Form.Item>
-          </Col>
-        </Row>
-      </div> */}
+      
+
     </>
   );
 }

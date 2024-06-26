@@ -101,10 +101,10 @@ export default function DataTable({ config, extra = [] }) {
     modal.open();
   };
 
-  const handleRecordPayment = (record) => {
-    dispatch(erp.currentItem({ data: record }));
-    navigate(`/investment/pay/${record._id}`);
-  };
+  // const handleRecordPayment = (record) => {
+  //   dispatch(erp.currentItem({ data: record }));
+  //   navigate(`/investment/pay/${record._id}`);
+  // };
 
   dataTableColumns = [
     ...dataTableColumns,
@@ -130,9 +130,9 @@ export default function DataTable({ config, extra = [] }) {
                 case 'delete':
                   handleDelete(record);
                   break;
-                case 'recordPayment':
-                  handleRecordPayment(record);
-                  break;
+                // case 'recordPayment':
+                //   handleRecordPayment(record);
+                //   break;
                 default:
                   break;
               }

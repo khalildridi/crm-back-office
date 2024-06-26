@@ -6,8 +6,6 @@ import { PageHeader } from '@ant-design/pro-layout';
 import { useSelector, useDispatch } from 'react-redux';
 
 import useLanguage from '@/locale/useLanguage';
-
-import { settingsAction } from '@/redux/settings/actions';
 import { erp } from '@/redux/erp/actions';
 import { selectCreatedItem } from '@/redux/erp/selectors';
 
@@ -24,6 +22,7 @@ import {
 
 import { useNavigate } from 'react-router-dom';
 import { selectLangDirection } from '@/redux/translate/selectors';
+import { settingsAction } from '@/redux/settings/actions';
 
 function SaveForm({ form }) {
   const translate = useLanguage();
@@ -88,8 +87,16 @@ export default function CreateItem({ config, CreateForm ,withUpload}) {
   }, [isSuccess]);
 
   const onSubmit = (fieldsValue) => {
-    let formData = new FormData();
+    // let formData = new FormData();
     console.log('🚀 ~ onSubmit ~ fieldsValue:', fieldsValue);
+    if (withUpload) {
+      if (fieldsValue.logo) {
+        fieldsValue.logo = fieldsValue.logo[0].originFileObj;
+        console.log(' fieldsValue.logo', fieldsValue.logo);
+      }
+      // dispatch(erp.upload({ entity, jsonData: fieldsValue }));
+      dispatch(erp.upload({ entity, jsonData: fieldsValue }));
+    }
     if (fieldsValue) {
       if (fieldsValue.items) {
         let newList = [...fieldsValue.items];
@@ -102,13 +109,13 @@ export default function CreateItem({ config, CreateForm ,withUpload}) {
         };
       }
    
-      formData.append(entity, JSON.stringify(fieldsValue));
+      // formData.append(entity, JSON.stringify(fieldsValue));
 
-      if(fieldsValue.logo) {
-      formData.append('logo', fieldsValue.logo[0].originFileObj);
-      }
+      // if(fieldsValue.logo) {
+      // formData.append('logo', fieldsValue.logo[0].originFileObj);
+      // }
     }
-    dispatch(erp.create({ entity, jsonData: formData, withUpload }));
+    // dispatch(erp.create({ entity, jsonData: formData, withUpload }));
   };
   const langDirection = useSelector(selectLangDirection);
   return (

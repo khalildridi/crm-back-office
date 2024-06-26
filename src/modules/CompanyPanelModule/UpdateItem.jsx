@@ -44,8 +44,8 @@ export default function UpdateItem({ config, UpdateForm }) {
 
   const resetErp = {
     status: '',
-    enabled:'',
-    investor: {
+    enabled: '',
+    company: {
       name: '',
       email: '',
       phone: '',
@@ -83,18 +83,18 @@ export default function UpdateItem({ config, UpdateForm }) {
   };
 
   const onSubmit = (fieldsValue) => {
-    let dataToUpdate = { ...fieldsValue };
+    let { created, ...dataToUpdate } = { ...fieldsValue };
+
     if (fieldsValue) {
-            if (
-              fieldsValue.created ||
-              fieldsValue.birthday 
-            ) {
-              dataToUpdate.created = dayjs(fieldsValue.created).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-              dataToUpdate.birthday = dayjs(fieldsValue.birthday).format(
-                'YYYY-MM-DDTHH:mm:ss.SSSZ'
-              );
-  
-            }
+      if (
+        // fieldsValue.created ||
+        fieldsValue.creationDate
+      ) {
+        // dataToUpdate.created = dayjs(fieldsValue.created).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+        dataToUpdate.creationDate = dayjs(fieldsValue.creationDate).format(
+          'YYYY-MM-DDTHH:mm:ss.SSSZ'
+        );
+      }
       // if (
       //   fieldsValue.date ||
       //   fieldsValue.expiredDate ||
@@ -142,8 +142,8 @@ export default function UpdateItem({ config, UpdateForm }) {
       if (formData.date) {
         formData.date = dayjs(formData.date);
       }
-      if (formData.birthday) {
-        formData.birthday = dayjs(formData.birthday);
+      if (formData.creationDate) {
+        formData.creationDate = dayjs(formData.creationDate);
       }
       if (formData.created) {
         formData.created = dayjs(formData.created);

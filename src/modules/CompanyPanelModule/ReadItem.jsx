@@ -80,20 +80,17 @@ const ReadItem = ({ config, selectedItem }) => {
     };
   }, [currentResult]);
 
-  const investmentDate = currentErp.created ? new Date(currentErp.created) : null;
-  const birthday = currentErp.birthday ? new Date(currentErp.birthday) : null;
-   const birthdayFormatted =
-     birthday instanceof Date && !isNaN(birthday) ? birthday.toISOString().substring(0, 10) : '';
-  const investmentDateFormatted =
-    investmentDate instanceof Date && !isNaN(investmentDate)
-      ? investmentDate.toISOString().substring(0, 10)
+  const createdDate = currentErp.created ? new Date(currentErp.created) : null;
+  const createdDateFormatted =
+    createdDate instanceof Date && !isNaN(createdDate)
+      ? createdDate.toISOString().substring(0, 10)
       : '';
 
   return (
     <>
       <PageHeader
         onBack={() => navigate(`/${entity.toLowerCase()}`)}
-        title={<Title level={3}>{`${ENTITY_NAME} # ${investmentDateFormatted}`}</Title>}
+        title={<Title level={3}>{`${ENTITY_NAME} # ${createdDateFormatted}`}</Title>}
         ghost={false}
         tags={[
           <Tag color={tagColor(currentErp.status)?.color} key="status">
@@ -157,7 +154,7 @@ const ReadItem = ({ config, selectedItem }) => {
             <Statistic title="Status" value={currentErp.status} />
           </Col> */}
           <Col span={8}>
-            <Statistic title={translate('Created Date')} value={investmentDateFormatted} />
+            <Statistic title={translate('Created Date')} value={createdDateFormatted} />
           </Col>
           <Col span={8}>
             <Statistic title={translate('Country')} value={currentErp.country} />
@@ -170,6 +167,7 @@ const ReadItem = ({ config, selectedItem }) => {
           </Col>
         </Row>
       </PageHeader>
+      <Divider dashed />
       <Divider dashed />
       <Tabs defaultActiveKey="1">
         <TabPane
@@ -192,20 +190,20 @@ const ReadItem = ({ config, selectedItem }) => {
             <Descriptions.Item
               label={
                 <>
-                  <UserOutlined /> {translate('First Name')}
+                  <UserOutlined /> {translate('Name')}
                 </>
               }
             >
-              {currentErp.firstname}
+              {currentErp.name}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <>
-                  <UserOutlined /> {translate('Last Name')}
+                  <UserOutlined /> {translate('Description')}
                 </>
               }
             >
-              {currentErp.lastname}
+              {currentErp.description}
             </Descriptions.Item>
             <Descriptions.Item
               label={
@@ -274,22 +272,22 @@ const ReadItem = ({ config, selectedItem }) => {
             <Descriptions.Item
               label={
                 <>
-                  <ProfileOutlined /> {translate('Bio')}
+                  <ProfileOutlined /> {translate('Annual Revenue')}
                 </>
               }
             >
-              {currentErp.bio}
+              {currentErp.annualRevenue}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <>
-                  <CalendarOutlined /> {translate('Birthday')}
+                  <CalendarOutlined /> {translate('Creation Date')}
                 </>
               }
             >
-              {birthdayFormatted}
+              {createdDateFormatted}
             </Descriptions.Item>
-            <Descriptions.Item
+            {/* <Descriptions.Item
               label={
                 <>
                   <ManOutlined /> {translate('Gender')}
@@ -297,7 +295,7 @@ const ReadItem = ({ config, selectedItem }) => {
               }
             >
               {currentErp.gender === 'male' ? translate('Male') : translate('Female')}
-            </Descriptions.Item>
+            </Descriptions.Item> */}
           </Descriptions>
         </TabPane>
       </Tabs>

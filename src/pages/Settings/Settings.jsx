@@ -33,12 +33,12 @@ export default function Settings() {
       icon: <TrophyOutlined />,
       children: <CompanySettings />,
     },
-    {
-      key: 'company_logo',
-      label: translate('Company Logo'),
-      icon: <FileImageOutlined />,
-      children: <CompanyLogoSettings />,
-    },
+    // {
+    //   key: 'company_logo',
+    //   label: translate('Company Logo'),
+    //   icon: <FileImageOutlined />,
+    //   children: <CompanyLogoSettings />,
+    // },
     {
       key: 'currency_settings',
       label: translate('Currency Settings'),
