@@ -6,7 +6,7 @@ import { useAppContext } from '@/context/appContext';
 
 import useLanguage from '@/locale/useLanguage';
 import logoIcon from '@/style/images/logo-icon.svg';
-import logoIconJpg from "@/style/images/logo-slang-png.png"
+import logoIconJpg from "@/style/images/long-logo.jpg"
 import logoText from '@/style/images/logo-text.svg';
 
 import useResponsive from '@/hooks/useResponsive';
@@ -27,6 +27,8 @@ import {
   FilterOutlined,
   WalletOutlined,
   ReconciliationOutlined,
+  InfoCircleOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { selectLangDirection } from '@/redux/translate/selectors';
@@ -54,7 +56,7 @@ function Sidebar({ collapsible, isMobile = false }) {
   const items = [
     {
       key: 'dashboard',
-      icon: <DashboardOutlined />,
+      icon: <HomeOutlined />,
       label: <Link to={'/'}>{translate('dashboard')}</Link>,
     },
     // {
@@ -97,11 +99,11 @@ function Sidebar({ collapsible, isMobile = false }) {
     //   icon: <FileSyncOutlined />,
     //   label: <Link to={'/quote'}>{translate('proforma invoices')}</Link>,
     // },
-    // {
-    //   key: 'payment',
-    //   icon: <CreditCardOutlined />,
-    //   label: <Link to={'/payment'}>{translate('payments')}</Link>,
-    // },
+    {
+      key: 'payment',
+      icon: <CreditCardOutlined />,
+      label: <Link to={'/payment'}>{translate('payments')}</Link>,
+    },
 
     // {
     //   key: 'product',
@@ -146,11 +148,12 @@ function Sidebar({ collapsible, isMobile = false }) {
         //   key: 'taxes',
         //   label: <Link to={'/taxes'}>{translate('taxes')}</Link>,
         // },
-        {
-          key: 'about',
-          label: <Link to={'/about'}>{translate('about')}</Link>,
-        },
       ],
+    },
+    {
+      key: 'about',
+      icon: <InfoCircleOutlined />,
+      label: <Link to={'/about'}>{translate('about')}</Link>,
     },
   ];
 
