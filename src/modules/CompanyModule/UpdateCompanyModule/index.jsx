@@ -43,7 +43,7 @@ export default function UpdateCompanyModule({ config }) {
     return (
       <ErpLayout>
         {isSuccess ? (
-          <UpdateItem config={config} UpdateForm={CompanyForm} />
+          <UpdateItem config={config} UpdateForm={CompanyForm} withUpload={true}/>
         ) : (
           <NotFound entity={config.entity} />
         )}

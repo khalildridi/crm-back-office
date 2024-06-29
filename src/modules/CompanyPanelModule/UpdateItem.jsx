@@ -32,7 +32,7 @@ function SaveForm({ form, translate }) {
   );
 }
 
-export default function UpdateItem({ config, UpdateForm }) {
+export default function UpdateItem({ config, UpdateForm ,withUpload}) {
   const translate = useLanguage();
   let { entity } = config;
 
@@ -95,6 +95,32 @@ export default function UpdateItem({ config, UpdateForm }) {
           'YYYY-MM-DDTHH:mm:ss.SSSZ'
         );
       }
+      console.log("withUpload is",withUpload)
+      if (withUpload) {
+        if(fieldsValue?.file?.file){
+          dataToUpdate.logo = fieldsValue?.file?.file;
+          delete dataToUpdate.file
+          console.log("data to update.logo is",dataToUpdate.logo)
+        }
+      //   console.log('fieldsValue.file', fieldsValue.file.file);
+      // if (fieldsValue.logo && fieldsValue.logo.fileList && fieldsValue.logo.fileList.length > 0) {
+      //   console.log('fieldsValue.logo', fieldsValue.logo);
+      //   console.log('fieldsValue.logo.fileList', fieldsValue.logo.fileList);
+      //   console.log('fieldsValue.logo.fileList.length', fieldsValue.logo.fileList.length);
+      //    console.log(
+      //      ' fieldsValue.logo.fileList[0].originFileObj',
+      //      fieldsValue.logo.fileList[0].originFileObj
+      //    );
+      //   fieldsValue.logo = fieldsValue.logo.fileList[0].originFileObj;
+      //   dataToUpdate.logo = fieldsValue.logo;
+      // } 
+      else {
+       // console.error("Logo file is missing");
+        delete dataToUpdate.logo
+
+        // return; // Exit the function if the logo file is missing
+      }
+    }
       // if (
       //   fieldsValue.date ||
       //   fieldsValue.expiredDate ||
@@ -123,8 +149,9 @@ export default function UpdateItem({ config, UpdateForm }) {
         dataToUpdate.items = newList;
       }
     }
+    console.log("data to update is",dataToUpdate)
 
-    dispatch(erp.update({ entity, id, jsonData: dataToUpdate }));
+    dispatch(erp.updateUpload({ entity, id, jsonData: dataToUpdate }));
   };
   useEffect(() => {
     if (isSuccess) {

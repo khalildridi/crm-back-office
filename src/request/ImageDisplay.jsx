@@ -8,12 +8,13 @@ const ImageDisplay = ({ imagePath ,entity}) => {
   const [error, setError] = useState('');
 
    const fetchImage = async () => {
-     try {
+     try { 
        const imageData = await request.getImage({
          entity: entity, // Adjust according to your API endpoint structure
          imagePath: imagePath,
        });
        const imageUrl = URL.createObjectURL(new Blob([imageData]));
+       console.log("image url from image display",imageUrl)
        setImageSrc(imageUrl);
        setLoading(false);
      } catch (error) {

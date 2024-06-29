@@ -63,7 +63,7 @@ const request = {
   },
   updateAndUpload: async ({ entity, id, jsonData }) => {
     try {
-      const response = await axios.patch(entity + '/update/' + id, jsonData, {
+      const response = await axios.patch(entity + '/form-data/update/' + id, jsonData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

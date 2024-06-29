@@ -342,7 +342,7 @@ export const erp = {
         jsonData,
       });
 
-       if (data.success === true) {
+      if (data.success === true) {
         dispatch({
           type: actionTypes.REQUEST_SUCCESS,
           keyState: 'create',
@@ -357,6 +357,39 @@ export const erp = {
         dispatch({
           type: actionTypes.REQUEST_FAILED,
           keyState: 'create',
+          payload: null,
+        });
+      }
+    },
+
+  updateUpload:
+    ({ entity,id, jsonData }) =>
+    async (dispatch) => {
+      dispatch({
+        type: actionTypes.REQUEST_LOADING,
+      });
+
+      let data = await request.updateAndUpload({
+        entity: entity,
+        id:id,
+        jsonData,
+      });
+
+      if (data.success === true) {
+        dispatch({
+          type: actionTypes.REQUEST_SUCCESS,
+          keyState: 'update',
+          payload: data.result,
+        });
+
+        dispatch({
+          type: actionTypes.CURRENT_ITEM,
+          payload: data.result,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.REQUEST_FAILED,
+          keyState: 'update',
           payload: null,
         });
       }

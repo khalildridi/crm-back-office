@@ -61,38 +61,46 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
     }
   }, [current]); 
  
+  useEffect(() => {
+    const fetchData = async () => {
+      if (current && current.logo?.length>0) {
+        try {
+          const { imageUrl, type } = await fetchImage({
+            entity: 'company',
+            imagePath: current.logo,
+          });
+          console.log("image url is",imageUrl,"type is , ",type)
 
-   useEffect(() => {
-     if (current) {
-       const { logo } = current;
-       if (logo) {
-         fetchImage({ entity: 'company', imagePath: logo })
-           .then((uri) => {
-             if (uri) {
-               setBlobImage(uri);
-             }
-           })
-           .catch((error) => {
-             console.error('Error fetching image:', error);
-           });
-       }
-     }
-   }, [current]);
+          // Extract the extension from the MIME type
+          const extension = type.split('/')[1];
 
-   useEffect(() => {
-     if (blobImage) {
-       // Convert blobImage URI to a File object
-       const blob = fetch(blobImage).then((res) => res.blob());
-       blob
-         .then((file) => {
-           const fileObj = new File([file], 'logo.png', { type: 'image/png' });
-           setLogoFileList([fileObj]);
-         })
-         .catch((error) => {
-           console.error('Error creating File object from Blob:', error);
-         });
-     }
-   }, [blobImage]);
+          // Create a File object with the correct type and extension
+          const fileObj = new File([await (await fetch(imageUrl)).blob()], `logo.${extension}`, {
+            type,
+          });
+
+          setLogoFileList([
+            {
+              uid: '-1',
+              name: `logo.${extension}`,
+              status: 'done',
+              url: imageUrl,
+              originFileObj: fileObj,
+            },
+          ]);
+        } catch (error) {
+          console.error('Error fetching image:', error);
+          message.error('Failed to fetch image');
+        }
+      }
+    };
+
+    fetchData();
+  }, [current]);
+
+    const handleFileListChange = ({ fileList }) => {
+      setLogoFileList(fileList);
+    };
 
   useEffect(() => {
     const currentTotal = calculate.add(calculate.multiply(subTotal, taxRate), subTotal);
@@ -138,18 +146,18 @@ function LoadCompanyForm({ subTotal = 0, current = null }) {
         </Col>
         <Col span={20}>
           <Form.Item
-            name="logo"
+            name="file"
             label="Logo"
             valuePropName='blobImage'
            
           >
             <Upload
               beforeUpload={beforeUpload}
-              listType="picture"
-              accept="image/png, image/jpeg"
               fileList={logoFileList}
-              onChange={handleLogoChange}
+              onChange={handleFileListChange}
+              listType="picture"
               maxCount={1}
+            
             >
               <Button icon={<UploadOutlined />}>{translate('click_to_upload')}</Button>
             </Upload>
