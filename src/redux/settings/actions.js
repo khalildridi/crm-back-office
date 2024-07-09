@@ -114,7 +114,7 @@ export const settingsAction = {
       dispatch({
         type: actionTypes.REQUEST_LOADING,
       });
-      console.log("im in listAll settings",entity)
+      // console.log("im in listAll settings",entity)
 
       let data = await request.listAll({ entity });
 

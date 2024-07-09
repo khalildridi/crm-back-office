@@ -39,7 +39,7 @@ const errorHandler = (error) => {
   }
 
   if (response && response.data && response.data.jwtExpired) {
-    console.log("response data",response.data)
+    // console.log("response data",response.data)
     const result = window.localStorage.getItem('auth');
     const jsonFile = window.localStorage.getItem('isLogout');
     const { isLogout } = (jsonFile && JSON.parse(jsonFile)) || false;

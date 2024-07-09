@@ -178,7 +178,7 @@ const request = {
 
       const response = await axios.get(entity + '/list' + query);
 
-      console.log('response is', response);
+      // console.log('response is', response);
 
       successHandler(response, {
         notifyOnSuccess: false,
@@ -229,12 +229,12 @@ const request = {
   getImage: async ({ entity, imagePath }) => {
     try {
       const response = await axios.get(entity + '/image/' + imagePath);
-      console.log('response is', response);
+      // console.log('response is', response);
 
-      console.log('response.data is', response.data);
+      // console.log('response.data is', response.data);
       return response.data;
     } catch (error) {
-      console.log('errorrrrr is', error);
+      // console.log('errorrrrr is', error);
       return errorHandler(error);
     }
   },

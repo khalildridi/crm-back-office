@@ -14,7 +14,7 @@ export default function UpdateSettingModule({
 }) {
 
   const langDirection=useSelector(selectLangDirection)
-  console.log("upload setting key",uploadSettingKey)
+  // console.log("upload setting key",uploadSettingKey)
 
   return (
     <>

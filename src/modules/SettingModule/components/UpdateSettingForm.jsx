@@ -38,8 +38,8 @@ export default function UpdateSettingForm({ config, children, withUpload, upload
 
   useEffect(() => {
     const current = result[settingsCategory];
-    console.log("setting categori is",settingsCategory)
-    console.log("current is",current)
+    // console.log("setting categori is",settingsCategory)
+    // console.log("current is",current)
 
     form.setFieldsValue(current);
   }, [result]);

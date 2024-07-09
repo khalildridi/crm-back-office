@@ -78,7 +78,7 @@ const AdminInfo = ({ config }) => {
               {currentAdmin?.surname}
             </Descriptions.Item>
             <Descriptions.Item label={translate('email')}>{currentAdmin?.email}</Descriptions.Item>
-            <Descriptions.Item label={translate('role')}>{currentAdmin?.role}</Descriptions.Item>
+            <Descriptions.Item label={translate('role')}>{currentAdmin?.role.name}</Descriptions.Item>
           </Descriptions>
         </Col>
       </Row>

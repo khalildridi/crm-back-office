@@ -14,7 +14,7 @@ const ImageDisplay = ({ imagePath ,entity}) => {
          imagePath: imagePath,
        });
        const imageUrl = URL.createObjectURL(new Blob([imageData]));
-       console.log("image url from image display",imageUrl)
+      //  console.log("image url from image display",imageUrl)
        setImageSrc(imageUrl);
        setLoading(false);
      } catch (error) {

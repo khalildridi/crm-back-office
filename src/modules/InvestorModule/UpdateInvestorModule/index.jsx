@@ -28,7 +28,7 @@ export default function UpdateInvestorModule({ config }) {
 
   useLayoutEffect(() => {
     if (currentResult) {
-      console.log('current resultssssss',currentResult)
+      // console.log('current resultssssss',currentResult)
       const data = { ...currentResult };
       dispatch(erp.currentAction({ actionType: 'update', data }));
     }

@@ -50,7 +50,7 @@ function LoadRoleForm({ subTotal = 0, current = null }) {
     );
   };
   useEffect(() => {
-    console.log('selected permissions is', selectedPermissions);
+    // console.log('selected permissions is', selectedPermissions);
   }, [selectedPermissions]);
 
   return (

@@ -22,7 +22,7 @@ const DefaultApp = () => (
 
 export default function IdurarOs() {
   const { isLoggedIn } = useSelector(selectAuth);
-  console.log("is logged in",isLoggedIn)
+  // console.log("is logged in",isLoggedIn)
 
   // // Online state
   // const [isOnline, setIsOnline] = useState(navigator.onLine);

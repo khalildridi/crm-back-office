@@ -27,7 +27,7 @@ export default function AppRouter() {
       for (let i = 0; i < routes[key].length; i++) {
         // l'access est dans routes[key][i].access
           if (routes[key][i].path === path) {
-            console.log("key is",key)
+            // console.log("key is",key)
             return key;
           }
       }

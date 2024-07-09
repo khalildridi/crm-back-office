@@ -20,10 +20,10 @@ export const login = async ({ loginData }) => {
         notifyOnFailed: true,
       }
     );
-    console.log("data is",data)
+    // console.log("data is",data)
     return data;
   } catch (error) {
-    console.log("error is",error)
+    // console.log("error is",error)
     return errorHandler(error);
   }
 };
