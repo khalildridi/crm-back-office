@@ -5,8 +5,32 @@ import errorHandler from './errorHandler';
 import successHandler from './successHandler';
 
 axios.defaults.baseURL = API_BASE_URL;
-//console.log("API BASE URL",API_BASE_URL)
 axios.defaults.withCredentials = true;
+// axios.interceptors.request.use(
+//   (config) => {
+//     console.log('Contenu du cookie:', document.cookie);
+//     return config;
+//   },
+//   (error) => {
+
+//     return Promise.reject(error);
+//   }
+// );
+axios.interceptors.request.use(
+  (config) => {
+    const auth = JSON.parse(window.localStorage.getItem('auth'));
+    // const token = window.localStorage.getItem('access_token');
+    const access_token = auth ? auth.access_token : null;
+    if (access_token) {
+      config.headers.Authorization = `Bearer ${access_token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 
 const request = {
   create: async ({ entity, jsonData }) => {

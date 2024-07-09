@@ -32,6 +32,7 @@ import {
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { selectLangDirection } from '@/redux/translate/selectors';
+import { selectCurrentAdmin } from '@/redux/auth/selectors';
 
 const { Sider } = Layout;
 
@@ -49,6 +50,8 @@ function Sidebar({ collapsible, isMobile = false }) {
   const { navMenu } = appContextAction;
   const [showLogoApp, setLogoApp] = useState(isNavMenuClose);
   const [currentPath, setCurrentPath] = useState(location.pathname.slice(1));
+    const currentAdmin = useSelector(selectCurrentAdmin);
+    const permissions = currentAdmin.role?.permissions;
 
   const translate = useLanguage();
   const navigate = useNavigate();
@@ -78,6 +81,16 @@ function Sidebar({ collapsible, isMobile = false }) {
       key: 'company',
       icon: <ShopOutlined />,
       label: <Link to={'/company'}>{translate('companies')}</Link>,
+      // children: [
+      //   {
+      //     key: 'companyList',
+      //     label: <Link to={'/company'}>{translate('companies List')}</Link>,
+      //   },
+      //   {
+      //     key: 'addCompany',
+      //     label: <Link to={'/company/create'}>{translate('addCompany')}</Link>,
+      //   },
+      // ],
     },
     // {
     //   key: 'lead',
@@ -125,7 +138,6 @@ function Sidebar({ collapsible, isMobile = false }) {
     //   icon: <ReconciliationOutlined />,
     //   label: <Link to={'/category/expenses'}>{translate('expenses_Category')}</Link>,
     // },
-
     {
       label: translate('Settings'),
       key: 'settings',
@@ -138,6 +150,10 @@ function Sidebar({ collapsible, isMobile = false }) {
         {
           key: 'admin',
           label: <Link to={'/admin'}>{translate('Admin')}</Link>,
+        },
+        {
+          key: 'role',
+          label: <Link to={'/role'}>{translate('Role')}</Link>,
         },
 
         {

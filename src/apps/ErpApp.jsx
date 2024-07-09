@@ -13,19 +13,24 @@ import useResponsive from '@/hooks/useResponsive';
 import storePersist from '@/redux/storePersist';
 import { selectLangDirection } from '@/redux/translate/selectors';
 import './styles.css'; // Assurez-vous d'importer vos styles CSS
+import { selectCurrentAdmin } from '@/redux/auth/selectors';
 
 export default function ErpCrmApp() {
   const { Content } = Layout;
   const { state: stateApp, appContextAction } = useAppContext();
   const { isNavMenuClose, currentApp } = stateApp;
+  const currentAdmin = useSelector(selectCurrentAdmin);
   const { isMobile } = useResponsive();
   const dispatch = useDispatch();
-
+  // const auth = storePersist.get('authorized');
+  // console.log("auth is ",auth)
   useLayoutEffect(() => {
     dispatch(settingsAction.list({ entity: 'setting' }));
+
   }, [dispatch]);
 
   const appSettings = useSelector(selectAppSettings);
+
   const { isSuccess: settingIsloaded } = useSelector(selectSettings);
 
   useEffect(() => {

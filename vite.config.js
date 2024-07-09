@@ -10,7 +10,7 @@ export default ({ mode }) => {
     process.env.VITE_DEV_REMOTE === 'remote'
       ? process.env.VITE_BACKEND_SERVER
       : 'http://localhost:5000/';
-
+console.log('proxy url is',proxy_url)
   const config = {
     plugins: [react()],
     resolve: {
@@ -29,6 +29,10 @@ export default ({ mode }) => {
           secure: true,
         },
       },
+    },
+    build: {
+      // Persist build logs to debug issues before cache clearing
+      preserveLogs: true,
     },
   };
   return defineConfig(config);

@@ -1,16 +1,16 @@
 import { ErpLayout } from '@/layout';
-import CompanyPanel from '@/modules/CompanyPanelModule';
+import RolePanel from '@/modules/RolePanelModule';
 import useLanguage from '@/locale/useLanguage';
 import { CreditCardOutlined } from '@ant-design/icons';
 import { useDispatch,useSelector } from 'react-redux';
 
-export default function CompanyDataTableModule({ config }) {
+export default function RoleDataTableModule({ config }) {
   const translate = useLanguage();
   const dispatch = useDispatch();
 
   return (
     <ErpLayout>
-      <CompanyPanel
+      <RolePanel
         config={config}
         extra={[
           {
@@ -19,7 +19,7 @@ export default function CompanyDataTableModule({ config }) {
             icon: <CreditCardOutlined />,
           },
         ]}
-      ></CompanyPanel>
+      ></RolePanel>
     </ErpLayout>
   );
 }

@@ -5,6 +5,7 @@ import { tagColor } from '@/utils/statusTagColor';
 import { useMoney, useDate } from '@/settings';
 import CompanyDataTableModule from '@/modules/CompanyModule/CompanyDataTableModule';
 import ImageDisplay from '@/request/ImageDisplay';
+import EmptyImageIcon from './EmptyImageIcon';
 
 export default function Company() {
   const translate = useLanguage();
@@ -23,8 +24,8 @@ export default function Company() {
       title: translate('Logo'),
       dataIndex: 'logo',
       render: (logo, record) => {
-        console.log("logo is",logo,"entity is",entity)
-        return <ImageDisplay imagePath={logo} entity={entity} />;
+        console.log('logo is', logo, 'entity is', entity);
+        return logo ? <ImageDisplay imagePath={logo} entity={entity} /> : <EmptyImageIcon />;
       },
     },
     {

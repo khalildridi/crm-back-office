@@ -11,17 +11,24 @@ export const login =
     const data = await authService.login({ loginData });
 
     if (data.success === true) {
+      
       const auth_state = {
         current: data.result,
         isLoggedIn: true,
         isLoading: false,
         isSuccess: true,
+        access_token: data.access_token,
       };
-      window.localStorage.setItem('auth', JSON.stringify(auth_state));
-      window.localStorage.removeItem('isLogout');
+        window.localStorage.setItem('auth', JSON.stringify(auth_state));
+         const access_token = auth_state.access_token;
+         console.log('acces token is', access_token);
+         window.localStorage.setItem('access_token',access_token);
+         window.localStorage.removeItem('isLogout');
+      
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         payload: data.result,
+        access_token:data.access_token
       });
     } else {
       dispatch({
@@ -63,12 +70,18 @@ export const verify =
         isLoggedIn: true,
         isLoading: false,
         isSuccess: true,
+        access_token: data.access_token,
       };
+      // const access_token = data.access_token;
+      // console.log("acces token is",access_token)
+      // window.localStorage.setItem('access_token',access_token);
+    
       window.localStorage.setItem('auth', JSON.stringify(auth_state));
       window.localStorage.removeItem('isLogout');
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         payload: data.result,
+        access_token: data.access_token,
       });
     } else {
       dispatch({
@@ -91,12 +104,14 @@ export const resetPassword =
         isLoggedIn: true,
         isLoading: false,
         isSuccess: true,
+        access_token: data.access_token,
       };
       window.localStorage.setItem('auth', JSON.stringify(auth_state));
       window.localStorage.removeItem('isLogout');
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         payload: data.result,
+        access_token: data.access_token,
       });
     } else {
       dispatch({
@@ -123,13 +138,14 @@ export const logout = () => async (dispatch) => {
       isLoggedIn: true,
       isLoading: false,
       isSuccess: true,
+      access_token: tmpAuth.access_token,
     };
     window.localStorage.setItem('auth', JSON.stringify(auth_state));
     window.localStorage.setItem('settings', JSON.stringify(tmpSettings));
     window.localStorage.removeItem('isLogout');
     dispatch({
       type: actionTypes.LOGOUT_FAILED,
-      payload: data.result,
+      payload: data.result
     });
   } else {
     // on lgout success
@@ -145,12 +161,14 @@ export const updateProfile =
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         payload: data.result,
+        access_token: data.access_token,
       });
       const auth_state = {
         current: data.result,
         isLoggedIn: true,
         isLoading: false,
         isSuccess: true,
+        access_token: data.access_token,
       };
       window.localStorage.setItem('auth', JSON.stringify(auth_state));
     }

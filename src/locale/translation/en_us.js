@@ -400,6 +400,7 @@ const lang = {
   product_category_list: 'Product Category List',
   add_new_product_category: 'Add New Product Category',
   color: 'Color',
+  role: 'Role',
   enabled: 'Enabled',
   expense_list: 'Expense List',
   add_new_expense: 'Add New Expense',
@@ -408,6 +409,8 @@ const lang = {
   add_new_expense_category: 'Add New Expense Category',
   admin_list: 'Admin List',
   add_new_admin: 'Add New Admin',
+  role_list: 'Role List',
+  add_new_role: 'Add New Role',
   admin_super_admin: 'Admin Super Admin',
   staff_admin_crud: 'Staff Admin Crud',
   staff_cru: 'Staff Cru',
@@ -449,7 +452,7 @@ const lang = {
   enter_code: 'Enter Code',
   offers: 'Offers',
   proforma_invoices: 'Total Paid',
-  search:"search"
+  search: 'search',
 };
 
 export default lang;

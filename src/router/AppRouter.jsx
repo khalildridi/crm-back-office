@@ -4,13 +4,17 @@ import {} from 'react-router-dom';
 import {} from 'react-router-dom';
 import { Navigate, useLocation, useRoutes } from 'react-router-dom';
 import { useAppContext } from '@/context/appContext';
+import { selectCurrentAdmin } from '@/redux/auth/selectors';
 
 import routes from './routes';
+import { useSelector } from 'react-redux';
 
 export default function AppRouter() {
   let location = useLocation();
   const { state: stateApp, appContextAction } = useAppContext();
   const { app } = appContextAction;
+  const currentAdmin = useSelector(selectCurrentAdmin)
+  const permissions = currentAdmin.role?.permissions;
 
   const routesList = [];
 
@@ -21,9 +25,11 @@ export default function AppRouter() {
   function getAppNameByPath(path) {
     for (let key in routes) {
       for (let i = 0; i < routes[key].length; i++) {
-        if (routes[key][i].path === path) {
-          return key;
-        }
+        // l'access est dans routes[key][i].access
+          if (routes[key][i].path === path) {
+            console.log("key is",key)
+            return key;
+          }
       }
     }
     // Return 'default' app  if the path is not found
