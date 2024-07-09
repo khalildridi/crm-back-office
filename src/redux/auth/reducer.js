@@ -21,8 +21,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
 
     case actionTypes.REQUEST_SUCCESS:
-      console.log('action.payload is', action?.payload);
-      console.log('action.access_token is', action);
       return {
         current: action.payload,
         isLoggedIn: true,
@@ -47,8 +45,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         current: action.payload,
         isLoggedIn: true,
         isLoading: false,
-        isSuccess: true,
-        access_token: action.access_token,
+        isSuccess: true
       };
 
     default:

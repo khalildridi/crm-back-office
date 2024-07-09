@@ -22,10 +22,15 @@ export default function ErpCrmApp() {
   const currentAdmin = useSelector(selectCurrentAdmin);
   const { isMobile } = useResponsive();
   const dispatch = useDispatch();
-  // const auth = storePersist.get('authorized');
-  // console.log("auth is ",auth)
+  const auth = JSON.parse(window.localStorage.getItem('auth'));
+  const access_token = auth ? auth.access_token : null;
+  console.log("auth is ",auth)
   useLayoutEffect(() => {
-    dispatch(settingsAction.list({ entity: 'setting' }));
+  
+    if(access_token!==null)  {
+        console.log('i wanna list settings');
+      dispatch(settingsAction.list({ entity: 'setting' }));
+    }
 
   }, [dispatch]);
 

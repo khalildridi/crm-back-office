@@ -116,33 +116,36 @@ export const resetPassword =
 
 export const logout = () => async (dispatch) => {
   dispatch({
-    type: actionTypes.LOGOUT_SUCCESS,
+    type: actionTypes.REQUEST_LOADING,
   });
-  const result = window.localStorage.getItem('auth');
-  const tmpAuth = JSON.parse(result);
-  const settings = window.localStorage.getItem('settings');
-  const tmpSettings = JSON.parse(settings);
-  window.localStorage.removeItem('auth');
-  window.localStorage.removeItem('settings');
+
+  // const auth = window.localStorage.getItem('auth');
+  // const tmpAuth = auth ? JSON.parse(auth) : null;
+  // const settings = window.localStorage.getItem('settings');
+  // const tmpSettings = settings ? JSON.parse(settings) : null;
+
   window.localStorage.setItem('isLogout', JSON.stringify({ isLogout: true }));
+
+  // Appel à l'API de déconnexion
   const data = await authService.logout();
+
   if (data.success === false) {
-    const auth_state = {
-      current: tmpAuth,
-      isLoggedIn: true,
-      isLoading: false,
-      isSuccess: true,
-      access_token: tmpAuth.access_token,
-    };
-    window.localStorage.setItem('auth', JSON.stringify(auth_state));
-    window.localStorage.setItem('settings', JSON.stringify(tmpSettings));
+    // Si la déconnexion échoue, restaurer l'état initial
     window.localStorage.removeItem('isLogout');
     dispatch({
       type: actionTypes.LOGOUT_FAILED,
-      payload: data.result
+      payload: data.result,
     });
   } else {
-    // on lgout success
+    // Suppression des informations de l'utilisateur après la déconnexion réussie
+     dispatch({
+       type: actionTypes.LOGOUT_SUCCESS,
+     });
+    window.localStorage.removeItem('auth');
+    window.localStorage.removeItem('settings');
+    // window.localStorage.removeItem('isLogout');
+
+   
   }
 };
 
