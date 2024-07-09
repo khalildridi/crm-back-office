@@ -20,10 +20,7 @@ export const login =
         access_token: data.access_token,
       };
         window.localStorage.setItem('auth', JSON.stringify(auth_state));
-         const access_token = auth_state.access_token;
-         console.log('acces token is', access_token);
-         window.localStorage.setItem('access_token',access_token);
-         window.localStorage.removeItem('isLogout');
+        window.localStorage.removeItem('isLogout');
       
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
@@ -72,10 +69,7 @@ export const verify =
         isSuccess: true,
         access_token: data.access_token,
       };
-      // const access_token = data.access_token;
-      // console.log("acces token is",access_token)
-      // window.localStorage.setItem('access_token',access_token);
-    
+
       window.localStorage.setItem('auth', JSON.stringify(auth_state));
       window.localStorage.removeItem('isLogout');
       dispatch({

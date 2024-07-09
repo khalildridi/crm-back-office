@@ -48,7 +48,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         isLoggedIn: true,
         isLoading: false,
         isSuccess: true,
-        access_token: null,
+        access_token: action.access_token,
       };
 
     default:
